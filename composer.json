@@ -1,0 +1,17 @@
+{
+    "name": "acer/project-ct275",
+    "autoload": {
+        "psr-4": {
+            "Acer\\ProjectCt275\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anhcodervuive",
+            "email": "dudo121234@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
