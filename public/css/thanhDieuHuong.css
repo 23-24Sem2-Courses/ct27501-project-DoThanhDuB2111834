@@ -1,0 +1,29 @@
+.navbar{
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 8vh;
+    padding: auto 30px !important;
+}
+
+.nav-account{
+    position: relative;
+    margin: auto 15px;
+}
+
+.nav-account-icon{
+    position: relative;
+}
+
+.nav-account:hover .nav-account-list{
+    display: block !important;
+}
+
+.nav-account-list{
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 1;
+    z-index: 2;
+}

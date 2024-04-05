@@ -2,8 +2,11 @@
     "name": "acer/project-ct275",
     "autoload": {
         "psr-4": {
-            "Acer\\ProjectCt275\\": "src/"
-        }
+			"App\\": "app/"
+		},
+		"files": [
+			"app/functions.php"
+		]
     },
     "authors": [
         {

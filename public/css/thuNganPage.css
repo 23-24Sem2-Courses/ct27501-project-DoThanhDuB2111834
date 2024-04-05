@@ -1,0 +1,70 @@
+.App {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 90vh;
+    margin: unset !important;
+}
+
+.thuNgan-thongTinHoaDon{
+    position: relative;
+    height: 90vh;
+}
+
+.thuNgan-table{
+    height: 100%;
+}
+
+.thuNgan-table-footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.thuNgan-table-footer-infor{
+    width: 100%;
+    margin: unset !important;
+}
+
+.menu-Header{
+    height: 15%;
+}
+
+.menu-Header-item:hover{
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.ban-item{
+    height: 50px;
+}
+
+.ban-item:hover{
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.thucDon-img{
+    position: relative;
+    width: 150px;
+    height: 130px;
+    background-attachment: local;
+    background-size: contain;
+}
+
+.thucDon-tenMon {
+    position: absolute;
+    opacity: 0.7;
+    bottom: 0;
+    left: 0;
+}
+
+.thucDon-giaMon{
+    position: absolute;
+    opacity: 0.7;
+    top: 0;
+    right: 0;
+}
