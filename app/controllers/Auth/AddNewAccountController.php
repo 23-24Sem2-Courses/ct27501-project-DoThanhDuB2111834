@@ -16,8 +16,8 @@ class AddNewAccountController extends Controller
         parent::__construct();
     }
 
-    public function create()
+    public function index()
     {
-        
+        $this->sendPage('Auth/registration');
     }
 }

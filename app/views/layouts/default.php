@@ -54,7 +54,7 @@
                         <?= $this->e(\App\SessionGuard::TaiKhoan()->tennv) ?>
                     </a>
                     <ul class="dropdown-menu nav-account-list">
-                        <li><a class="dropdown-item" href="#">Thêm tài khoản</a></li>
+                        <li><a class="dropdown-item" href="/AddAccount">Thêm tài khoản</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
