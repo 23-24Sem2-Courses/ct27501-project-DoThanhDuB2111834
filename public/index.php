@@ -35,8 +35,9 @@ $router->get('/SanPham', '\App\Controllers\SanPhamController@index');
 $router->get('/SanPham/TimKiem', '\App\Controllers\SanPhamController@getDSSanPham');
 
 // Sử lý khi Client gửi yêu cầu HTTPS yêu cầu hình ảnh
-$router->get('/thucDon/img/([a-zA-Z0-9_-]+)', '\App\Controllers\imgController@getImgMon');
-$router->get('/BackGround/([^/]+)', '\App\Controllers\imgController@getbackGroundPageImg');
+// $router->get('/thucDon/img/([a-zA-Z0-9_-]+)', '\App\Controllers\imgController@getImgMon');
+// $router->get('/BackGround/([^/]+)', '\App\Controllers\imgController@getbackGroundPageImg');
+$router->get('/img/(.*)', '\App\Controllers\imgController@getImg');
 // 404
 $router->set404('\App\Controllers\Controller@sendNotFound');
 
