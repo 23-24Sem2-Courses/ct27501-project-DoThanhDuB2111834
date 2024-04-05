@@ -1,59 +1,24 @@
 <?php $this->layout("layouts/default", ["title" => APPNAME]) ?>
-
-<?php $this->start("page") ?>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-
-            <!-- FLASH MESSAGES -->
-
-            <div class="card mt-3">
-                <div class="card-header font-weight-bold text-uppercase">Login</div>
-                <div class="card-body">
-
-                    <form method="POST" action="/login">
-
-                        <div class="form-group row">
-                            <label for="tendangnhap" class="col-md-4 col-form-label">E-Mail Address</label>
-                            <div class="col-md-6">
-                                <input id="tendangnhap" type="text" class="form-control <?= isset($errors['tendangnhap']) ? 'is-invalid' : '' ?>" name="tendangnhap" value="<?= isset($old['tendangnhap']) ? $this->e($old['tendangnhap']) : '' ?>" required autofocus>
-
-                                <?php if (isset($errors['tendangnhap'])) : ?>
-                                    <span class="invalid-feedback">
-                                        <strong><?= $this->e($errors['tendangnhap']) ?></strong>
-                                    </span>
-                                <?php endif ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="matkhau" class="col-md-4 col-form-label">matkhau</label>
-                            <div class="col-md-6">
-                                <input id="matkhau" type="password" class="form-control <?= isset($errors['matkhau']) ? 'is-invalid' : '' ?>" name="matkhau" required>
-
-                                <?php if (isset($errors['matkhau'])) : ?>
-                                    <span class="invalid-feedback">
-                                        <strong><?= $this->e($errors['matkhau']) ?></strong>
-                                    </span>
-                                <?php endif ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <!-- <a class="btn btn-link" href="/register">
-                                    You are a new user?
-                                </a> -->
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<?php $this->start("page_specific_css") ?>
+<link rel="stylesheet" href="/css/Login/popuo-box.css">
+<link rel="stylesheet" href="/css/Login/style.css">
 <?php $this->stop() ?>
+<?php $this->start("page") ?>
+<div class="loginbackground">
+<h1>CLASSIC CAFE</h1>
+
+	<div class="w3layoutscontaineragileits">
+	<h2>Đăng nhậP</h2>
+		<form action="" method="POST">
+			<input type="text" Name="tendangnhap" id="tendangnhap" required="" placeholder="Email">
+			<input type="password" Name="matkhau" id="matkhau" placeholder="Mật khẩu" required="">
+			
+			<div class="aitssendbuttonw3ls">
+				<input type="submit" value="LOGIN">
+				
+			</div>
+		</form>
+	</div>
+    </div>
+<?php $this->stop() ?>
+
