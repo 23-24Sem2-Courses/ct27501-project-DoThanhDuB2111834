@@ -16,4 +16,9 @@ class imgController extends Controller
         $this->sendImg('img/thucDon/'.$imgPath);
         // $this->sendImg('img/thucDon/traDao');
     }
+
+    public function getbackGroundPageImg($imgPath)
+    {   
+        $this->sendImg('img/Login/'.$imgPath);
+    }
 }
