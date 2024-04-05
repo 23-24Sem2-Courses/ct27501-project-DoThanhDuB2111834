@@ -29,8 +29,6 @@ class SanPhamController extends Controller
         $thongTinTimKiem = $this->filterDataSanPham($_GET);
         $result = SanPham::where('id', 'like', "%".$thongTinTimKiem['id']."%")
                         ->where('tensp', 'like', "%".$thongTinTimKiem['tensp']."%")->get();
-        // $result = $result->get();
-        // echo "$result";
         $this->sendPage('SanPham/SanPham', ['sanPhamList' => $result]);
         
     }

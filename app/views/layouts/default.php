@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--  -->
 
-    <link rel="stylesheet" href="css/thanhDieuHuong.css" />
+    <link rel="stylesheet" href="../css/thanhDieuHuong.css" />
     <?= $this->section("page_specific_css") ?>
 </head>
 

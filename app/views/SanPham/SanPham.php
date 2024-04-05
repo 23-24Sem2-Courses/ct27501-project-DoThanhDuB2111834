@@ -1,7 +1,7 @@
 <?php $this->layout("layouts/default", ["title" => APPNAME]) ?>
 
 <?php $this->start("page_specific_css") ?>
-
+<link rel="stylesheet" href="/css/SanPham/home.css">
 <?php $this->stop() ?>
 
 <?php $this->start("page") ?>
@@ -14,12 +14,14 @@
                     class="fa-solid fa-filter"></i></span>
             Danh sách hàng hóa
         </div>
-        <a href="" class="col-2 offset-6 btn btn-primary bg-success text-white">
+        <button type="button" class="col-2 offset-6 btn btn-primary bg-success text-white"
+            onclick="document.getElementById('form-themSP').style.display='block';">
             <span class="SanPham-add-icon rounded-circle text-primary bg-white text-success text-center ps-1 me-2">
                 <i class="fa-solid fa-plus"></i>
             </span>
             Thêm mới hàng hóa
-        </a>
+        </button>
+
         <div class="input-group col">
             <select class="form-select" id="inputGroupSelect02">
                 <option selected>A -> Z</option>
@@ -28,8 +30,34 @@
             <label class="input-group-text" for="inputGroupSelect02">Options</label>
         </div>
     </div>
+    <form class="row mt-3" id="form-themSP">
+        <fieldset class="col-6 offset-3 border border-secondary py-2 rounded">
+            <legend>Thêm sản phẩm</legend>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Tên sản phẩm</label>
+                <input type="text" id="disabledTextInput" class="form-control" placeholder="Nhập vào tên sản phẩm">
+            </div>
+            <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Giá sản phẩm</label>
+                <input type="number" id="disabledTextInput" class="form-control" placeholder="Nhập vào giá sản phẩm">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Mô tả sản phẩm</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                <input type="file" class="form-control" id="inputGroupFile01">
+            </div>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger"
+                    onclick="document.getElementById('form-themSP').style.display='none';">Thoát</button>
+            </div>
+        </fieldset>
+    </form>
     <div class="row my-5">
-        <a href="#" class="btn btn-info btn-lg col-2 offset-10" data-toggle="modal" data-target="#modal1">
+        <a href="#" class="btn btn-info btn-lg col-2 offset-10" data-toggle="modal" data-target="#modal-TimKiem">
             Tìm kiếm
         </a>
     </div>
@@ -45,13 +73,23 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($sanPhamList as $sanPham) : ?>
+                <?php foreach ($sanPhamList as $sanPham): ?>
                     <tr>
-                        <td><?= $this->e($sanPham->id) ?></td>
-                        <td>Ảnh</td>
-                        <td><?= $this->e($sanPham->tensp) ?></td>
-                        <td colspan="4"><?= $this->e($sanPham->motasp) ?></td>
-                        <td><?= $this->e($sanPham->giasp) ?></td>
+                        <td>
+                            <?= $this->e($sanPham->id) ?>
+                        </td>
+                        <td>
+                            <div class="thucDon-img" style="background-image: url(<?= $this->e($sanPham->imgsp) ?>);"></div>
+                        </td>
+                        <td>
+                            <?= $this->e($sanPham->tensp) ?>
+                        </td>
+                        <td colspan="4">
+                            <?= $this->e($sanPham->motasp) ?>
+                        </td>
+                        <td>
+                            <?= $this->e($sanPham->giasp) ?>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -59,7 +97,7 @@
 
     </div>
 </div>
-<div id="modal1" class="modal fade" tabindex="-1">
+<div id="modal-TimKiem" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center d-block position-relative">
@@ -107,5 +145,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
     crossorigin="anonymous"></script>
+<script src="../JS/SanPham.js"></script>
 
 <?php $this->stop() ?>

@@ -1,0 +1,11 @@
+.form-themSP{
+    display: none;
+}
+
+.thucDon-img{
+    position: relative;
+    width: 150px;
+    height: 130px;
+    background-attachment: local;
+    background-size: contain;
+}
