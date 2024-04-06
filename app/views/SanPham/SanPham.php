@@ -36,11 +36,13 @@
             <div class="mb-3">
                 <label for="insertForm-tenSP" class="form-label">Tên sản phẩm</label>
                 <input type="text" id="insertForm-tenSP" name="tenSPInput" class="form-control"
+                    value="<?= isset($olds['tensp']) ? $this->e($olds['tensp']) : '' ?>" 
                     placeholder="Nhập vào tên sản phẩm">
             </div>
             <div class="mb-3 row">
                 <label for="insertForm-giaSP" class="form-label col">Giá sản phẩm</label>
                 <input type="number" id="insertForm-giaSP" name="giaSPInput" class="form-control <?= isset($errors['giasp']) ? 'is-invalid' : '' ?>" required
+                    value="<?= isset($olds['giasp']) ? $this->e($olds['giasp']) : '' ?>" 
                     aria-describedby="inputGroupPrepend" placeholder="Nhập vào giá sản phẩm">
                 <?php if (isset($errors['giasp'])): ?>
                     <span class="text-danger">
@@ -51,11 +53,13 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Mô tả sản phẩm</span>
-                <textarea class="form-control" name="motaSPInput" aria-label="With textarea"></textarea>
+                <textarea class="form-control" name="motaSPInput" aria-label="With textarea"
+                     ><?= isset($olds['motasp']) ? $this->e($olds['motasp']) : '' ?></textarea>
             </div>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="insertForm-imgSP">Upload</label>
-                <input type="file" class="form-control <?= isset($errorImgUpload) ? 'is-invalid' : '' ?>" name="imgSPInput" id="insertForm-imgSP">
+                <input type="file" class="form-control <?= isset($errorImgUpload) ? 'is-invalid' : '' ?>"
+                    name="imgSPInput" id="insertForm-imgSP">
                 <?php if (isset($errorImgUpload)): ?>
                     <?php foreach ($errorImgUpload as $errorImg): ?>
                         <p class="invalid-feedback">

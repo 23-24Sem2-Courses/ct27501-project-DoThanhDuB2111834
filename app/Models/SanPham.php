@@ -21,7 +21,6 @@ class SanPham extends Model
         $errors = [];
         if ($data['giasp'] < 0) {
             $errors['giasp'] = 'Giá của sản phẩm phải lớn hơn 0';
-            redirect('/SanPham', ['errors' => $errors]);
         }
 
         return $errors;

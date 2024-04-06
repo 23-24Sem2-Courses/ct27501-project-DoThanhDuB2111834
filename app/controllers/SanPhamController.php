@@ -26,6 +26,7 @@ class SanPhamController extends Controller
             'errorImgUpload' => session_get_once('errorsImgUpLoad'),
             'errors' => session_get_once('errors'),
             'message' => session_get_once('message'),
+            'olds' => $this->getSavedFormValues()
         ];
         $this->sendPage('SanPham/SanPham', $data);
     }
@@ -44,14 +45,20 @@ class SanPhamController extends Controller
         // Lấy dữ liệu
         $data = $this->filterDataSanPham($_POST);
         $model_errors = SanPham::Validate($data);
-        if(!empty($model_errors))
+
+        // Lưu lại dữ liệu đã được nhập từ trước đó
+        $this->saveFormValues($data);
+        if(!empty($model_errors)){
+            // var_dump($data);
             redirect('/SanPham', ['errors' => $model_errors]);
+        }
 
         $stateSaveImg = SanPham::handleSaveImg();
-        // Nếu biến stateSaveImg là mảng thì ảnh upload lỗi
+        // Nếu lưu ảnh thất bại biến stateSaveImg sẽ được gán danh sách lỗi
         if (is_array($stateSaveImg))
             redirect('/SanPham', ['errorsImgUpLoad' => $stateSaveImg]);
 
+        // Nếu lưu ảnh thành công thì biến stateSaveImg sẽ được gán đường dẫn của ảnh
         $imgPath = $stateSaveImg;
         $imgPath = str_replace('.jpg', '', $imgPath);
 
