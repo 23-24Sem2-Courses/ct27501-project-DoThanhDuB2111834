@@ -48,7 +48,7 @@ class SanPhamController extends Controller
 
         // Lưu lại dữ liệu đã được nhập từ trước đó
         $this->saveFormValues($data);
-        if(!empty($model_errors)){
+        if (!empty($model_errors)) {
             // var_dump($data);
             redirect('/SanPham', ['errors' => $model_errors]);
         }
@@ -59,7 +59,7 @@ class SanPhamController extends Controller
             redirect('/SanPham', ['errorsImgUpLoad' => $stateSaveImg]);
 
         // Nếu lưu ảnh thành công thì biến stateSaveImg sẽ được gán đường dẫn của ảnh
-        $imgPath = $stateSaveImg;
+        $imgPath = (!is_null($stateSaveImg) ? $stateSaveImg : null);
         $imgPath = str_replace('.jpg', '', $imgPath);
 
         // Khởi tạo sản phẩm mới và lưu
@@ -79,10 +79,53 @@ class SanPhamController extends Controller
     {
         // Tìm sản phẩm có id tương tự nếu không tồn tại thì báo lỗi
         $sanPham = SanPham::find($id);
-        if(!$sanPham)
+        if (!$sanPham)
             redirect('/SanPham', ['message' => 'Sản phẩm không tồn tại']);
 
-        $this->sendPage('/SanPham/edit', ['sanPham' => $sanPham]);
+        $data = [
+            'sanPham' => $sanPham,
+            'errorImgUpload' => session_get_once('errorsImgUpLoad'),
+            'errors' => session_get_once('errors'),
+            'message' => session_get_once('message'),
+            'olds' => $this->getSavedFormValues()
+        ];
+        $this->sendPage('/SanPham/edit', $data);
+    }
+
+    public function update($id)
+    {
+        // Tìm sản phẩm theo id
+        $sanPham = SanPham::find($id);
+
+        $data = $this->filterDataSanPham($_POST);
+        $model_errors = SanPham::Validate($data);
+
+        $this->saveFormValues($data);
+        if (!empty($model_errors))
+            redirect('/SanPham/edit/$id', ['errors' => $model_errors]);
+
+        // Nếu người dùng tải ảnh mới lên thì lưu ảnh mới và xóa ảnh cũ
+        $stateSaveImg = SanPham::handleSaveImg();
+        $imgPath = null;
+        if(is_string($stateSaveImg)){
+            $imgPath = $stateSaveImg;
+            $imgPath = str_replace('.jpg', '', $imgPath);
+        }
+        // Nếu kết quả trả về là đường dẫn ảnh mới thì xóa bỏ ảnh cũ 
+        if (!is_null($imgPath))
+            SanPham::handleRemoveImg($_POST['old-imgSPInput']);
+
+        $fillData = [
+            'tensp' => $data['tensp'],
+            'giasp' => $data['giasp'],
+            'motasp' => $data['motasp'],
+            'imgsp' => (!is_null($imgPath) ? $imgPath : $_POST['old-imgSPInput'])
+        ];
+        $sanPham->fill($fillData);
+
+        $sanPham->save();
+
+        redirect('/SanPham');
     }
 
     public function filterDataSanPham($data): array

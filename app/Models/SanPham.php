@@ -26,14 +26,15 @@ class SanPham extends Model
         return $errors;
     }
 
+    // Nếu không có ảnh upload thì trả về null
     // Hàm kiểm tra file ảnh được upload. Nếu có bất cứ lỗi gì sẽ trả về 1 mảng các lỗi.
-    // Nếu không có lỗi sẽ trả về đường dẫn ảnh
-    public static function handleSaveImg(): array|string
+    // Nếu không có lỗi sẽ trả về đường dẫn ảnh(string)
+    public static function handleSaveImg(): array | string | null
     {
         $errorsImgUpLoad = [];
-        if (!isset($_FILES['imgSPInput']['name'])) {
-            $errorsImgUpLoad['upLoadState'] = 'Không có hình ảnh nào được tải lên';
-            return $errorsImgUpLoad;
+        if (!isset($_FILES['imgSPInput']['name']) || empty($_FILES["imgSPInput"]["tmp_name"])) {
+            // $errorsImgUpLoad['upLoadState'] = 'Không có hình ảnh nào được tải lên';
+            return null;
         }
 
         $targetDir = 'img/thucDon/';
@@ -72,5 +73,15 @@ class SanPham extends Model
                 return $errorsImgUpLoad;
             }
         }
+    }
+
+    public static function handleRemoveImg(string $imgPath) : bool
+    {
+        $old_imgPath = realpath(__DIR__ . '../views/' . 'img/thucDon/66116075930f0traDao');
+        $test = 'C:\Users\acer\Desktop\Hk2 2023 - 2024\CT275\ProjectCT275\app\views\img\thucDon\661161165dda1TraSen.jpg';
+        if(file_exists($old_imgPath))
+            return unlink($old_imgPath);
+
+        return false;
     }
 }
