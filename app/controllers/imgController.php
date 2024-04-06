@@ -25,6 +25,7 @@ class imgController extends Controller
 
     public function getImg($imgPath)
     {
+        $imgPath = str_replace('.jpg', '', $imgPath);
         $this->sendImg('img/'.$imgPath);
     }
 }

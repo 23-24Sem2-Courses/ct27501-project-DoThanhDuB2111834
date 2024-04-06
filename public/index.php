@@ -33,6 +33,7 @@ $router->get('/DSMon', '\App\Controllers\ThuNganController@getAllMon');
 // Trang sản phẩm
 $router->get('/SanPham', '\App\Controllers\SanPhamController@index');
 $router->get('/SanPham/TimKiem', '\App\Controllers\SanPhamController@getDSSanPham');
+$router->post('/SanPham', '\App\Controllers\SanPhamController@store');
 
 // Sử lý khi Client gửi yêu cầu HTTPS yêu cầu hình ảnh
 // $router->get('/thucDon/img/([a-zA-Z0-9_-]+)', '\App\Controllers\imgController@getImgMon');

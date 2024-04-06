@@ -9,6 +9,7 @@ class SanPham extends Model
     protected $table = 'sanpham';
     protected $fillable = ['tensp', 'giasp', 'motasp', 'imgsp'];
     protected $primaryKey = 'id';
+    public $timestamps = false;
 
     public function HoaDon()
     {

@@ -5,10 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--  -->
 
     <!-- Font awesome -->
@@ -43,28 +47,28 @@
                         <a class="nav-link " aria-disabled="true">Giao dịch</a>
                     </li>
                 </ul>
-                <?php if (!\App\SessionGuard::isTaiKhoanLoggedIn()) : ?>
+                <?php if (!\App\SessionGuard::isTaiKhoanLoggedIn()): ?>
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                <?php else : ?>
+                <?php else: ?>
                     <a href="/thuNganPage" class="navbar-text nav-link"><i class="fa-solid fa-shop"></i></a>
-                <div class="nav-item dropdown nav-account">
-                    <a class="nav-link nav-account-icon dropdown-toggle" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <?= $this->e(\App\SessionGuard::TaiKhoan()->tennv) ?>
-                    </a>
-                    <ul class="dropdown-menu nav-account-list">
-                        <li><a class="dropdown-item" href="/AddAccount">Thêm tài khoản</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="/logout"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                         >Đăng xuất</a></li>
-                         <form id="logout-form" class="d-none" action="/logout" method="POST">
+                    <div class="nav-item dropdown nav-account">
+                        <a class="nav-link nav-account-icon dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <?= $this->e(\App\SessionGuard::TaiKhoan()->tennv) ?>
+                        </a>
+                        <ul class="dropdown-menu nav-account-list">
+                            <li><a class="dropdown-item" href="/AddAccount">Thêm tài khoản</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/logout"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                    xuất</a></li>
+                            <form id="logout-form" class="d-none" action="/logout" method="POST">
                             </form>
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
                 <?php endif ?>
             </div>
         </div>
@@ -73,6 +77,8 @@
     <?= $this->section("page") ?>
 
     <!-- Js -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc1 ban-items9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -80,4 +86,5 @@
     <?= $this->section("page_specific_js") ?>
 
 </body>
+
 </html>
