@@ -40,7 +40,7 @@
             </div>
             <div class="mb-3 row">
                 <label for="insertForm-giaSP" class="form-label col">Giá sản phẩm</label>
-                <input type="number" id="insertForm-giaSP" name="giaSPInput" class="form-control" required
+                <input type="number" id="insertForm-giaSP" name="giaSPInput" class="form-control <?= isset($errors['giasp']) ? 'is-invalid' : '' ?>" required
                     aria-describedby="inputGroupPrepend" placeholder="Nhập vào giá sản phẩm">
                 <?php if (isset($errors['giasp'])): ?>
                     <span class="text-danger">
@@ -55,10 +55,10 @@
             </div>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="insertForm-imgSP">Upload</label>
-                <input type="file" class="form-control" name="imgSPInput" id="insertForm-imgSP">
+                <input type="file" class="form-control <?= isset($errorImgUpload) ? 'is-invalid' : '' ?>" name="imgSPInput" id="insertForm-imgSP">
                 <?php if (isset($errorImgUpload)): ?>
                     <?php foreach ($errorImgUpload as $errorImg): ?>
-                        <p class="text-danger">
+                        <p class="invalid-feedback">
                             <strong>
                                 <?= $this->e($errorImg) ?>
                             </strong>
@@ -112,6 +112,17 @@
                         </td>
                         <td>
                             <?= $this->e($sanPham->giasp) ?>
+                        </td>
+                        <td class="d-flex justify-content-evenly align-items-center" style="height: 100%;">
+                            <a href="<?= '/SanPham/edit/' . $this->e($sanPham->id) ?>" class="btn btn-xs btn-warning">
+                                <i alt="Edit" class="fa fa-pencil"> </i> Edit
+                            </a>
+                            <form class="form-inline ml-1" action="<?= '/SanPham/delete/' . $this->e($sanPham->id) ?>"
+                                method="POST">
+                                <button type="submit" class="btn btn-xs btn-danger" name="delete-contact">
+                                    <i alt="Delete" class="fa fa-trash"></i> Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach ?>
