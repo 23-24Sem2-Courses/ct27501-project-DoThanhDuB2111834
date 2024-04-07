@@ -75,10 +75,10 @@ class SanPham extends Model
         }
     }
 
-    public static function handleRemoveImg(string $imgPath) : bool
+    public static function handleRemoveImg(string $imgPath)
     {
-        $old_imgPath = realpath(__DIR__ . '../views/' . 'img/thucDon/66116075930f0traDao');
-        $test = 'C:\Users\acer\Desktop\Hk2 2023 - 2024\CT275\ProjectCT275\app\views\img\thucDon\661161165dda1TraSen.jpg';
+        $old_imgPath = __DIR__. '/../views/' . $imgPath .'.jpg';
+        // echo "$old_imgPath";
         if(file_exists($old_imgPath))
             return unlink($old_imgPath);
 

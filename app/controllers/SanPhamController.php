@@ -100,10 +100,10 @@ class SanPhamController extends Controller
         $data = $this->filterDataSanPham($_POST);
         $model_errors = SanPham::Validate($data);
 
-        $this->saveFormValues($data);
-        if (!empty($model_errors))
-            redirect('/SanPham/edit/$id', ['errors' => $model_errors]);
-
+        if (!empty($model_errors)){
+            $this->saveFormValues($data);
+            redirect("/SanPham/edit/$id", ['errors' => $model_errors]);
+        }
         // Nếu người dùng tải ảnh mới lên thì lưu ảnh mới và xóa ảnh cũ
         $stateSaveImg = SanPham::handleSaveImg();
         $imgPath = null;
@@ -113,19 +113,19 @@ class SanPhamController extends Controller
         }
         // Nếu kết quả trả về là đường dẫn ảnh mới thì xóa bỏ ảnh cũ 
         if (!is_null($imgPath))
-            SanPham::handleRemoveImg($_POST['old-imgSPInput']);
+            SanPham::handleRemoveImg($sanPham->imgsp);
 
         $fillData = [
             'tensp' => $data['tensp'],
             'giasp' => $data['giasp'],
             'motasp' => $data['motasp'],
-            'imgsp' => (!is_null($imgPath) ? $imgPath : $_POST['old-imgSPInput'])
+            'imgsp' => (!is_null($imgPath) ? $imgPath : $sanPham->imgsp)
         ];
         $sanPham->fill($fillData);
 
         $sanPham->save();
 
-        redirect('/SanPham');
+        redirect('/SanPham', ['message' => 'Chỉnh sửa sản phẩm thành công sản phẩm thành công']);
     }
 
     public function filterDataSanPham($data): array

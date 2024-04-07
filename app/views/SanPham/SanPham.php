@@ -15,7 +15,7 @@
             Danh sách hàng hóa
         </div>
         <button type="button" class="col-2 offset-6 btn btn-primary bg-success text-white"
-            onclick="document.getElementById('form-themSP').style.display='block';">
+            onclick="toogleDisplayFormInsert();">
             <span class="SanPham-add-icon rounded-circle text-primary bg-white text-success text-center ps-1 me-2">
                 <i class="fa-solid fa-plus"></i>
             </span>
@@ -30,7 +30,7 @@
             <label class="input-group-text" for="inputGroupSelect02">Options</label>
         </div>
     </div>
-    <form class="row mt-3" id="form-themSP" method="POST" enctype="multipart/form-data">
+    <form class="row mt-3 <?= isset($errors) ? 'd-block' : 'd-none' ?>" id="form-themSP" method="POST" enctype="multipart/form-data">
         <fieldset class="col-6 offset-3 border border-secondary py-2 rounded">
             <legend>Thêm sản phẩm</legend>
             <div class="mb-3">
@@ -73,14 +73,8 @@
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-danger"
-                    onclick="document.getElementById('form-themSP').style.display='none';">Thoát</button>
+                    onclick="toogleDisplayFormInsert()">Thoát</button>
             </div>
-            <?php if (isset($message)): ?>
-                <div class="message">
-                    <?= $message ?>
-                </div>
-                <?php unset($message); ?>
-            <?php endif; ?>
         </fieldset>
     </form>
     <div class="row my-5">
@@ -184,5 +178,15 @@
     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
     crossorigin="anonymous"></script>
 <script src="../JS/SanPham.js"></script>
+
+<!-- Nếu thêm thành công thì hiển thị thông báo -->
+<?php if (isset($message)) : ?>
+    <?php 
+        echo "<script>";
+            echo "alert('". $message ."');";
+        echo "</script>";
+        unset($message);
+    ?>
+<?php endif; ?>
 
 <?php $this->stop() ?>

@@ -46,19 +46,16 @@
                     </p>
                 <?php endforeach; ?>
             <?php endif ?>
-            <input type="hidden" name="old-imgSPInput" id="old-imgSPInput" <?= isset($sanPham) ? $this->e($sanPham->imgsp . 'jpg') : '' ?>">
         </div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="button" class="btn btn-danger"
                 onclick="document.getElementById('form-themSP').style.display='none';">Thoát</button>
         </div>
-        <?php if (isset($message)): ?>
-            <div class="message">
-                <?= $message ?>
-            </div>
-            <?php unset($message); ?>
-        <?php endif; ?>
     </fieldset>
 </form>
+<?php $this->stop() ?>
+
+<?php $this->start("page_specific_js") ?>
+
 <?php $this->stop() ?>
