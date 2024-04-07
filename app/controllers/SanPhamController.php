@@ -128,6 +128,22 @@ class SanPhamController extends Controller
         redirect('/SanPham', ['message' => 'Chỉnh sửa sản phẩm thành công sản phẩm thành công']);
     }
 
+    public function delete($id)
+    {
+        $sanPham = SanPham::find($id);
+
+        if(!$sanPham)
+            redirect('/SanPham', ['message' => 'Sản phẩm không tồn tại']);
+
+        // Xóa ảnh của sản phẩm trong folder lưu ảnh
+        SanPham::handleRemoveImg($sanPham->imgsp);
+
+        // Xóa sản phẩm trong CSDL
+        $sanPham->delete();
+
+        redirect('/SanPham', ['message' => 'Xóa sản phẩm thành công']);
+    }
+
     public function filterDataSanPham($data): array
     {
         return [

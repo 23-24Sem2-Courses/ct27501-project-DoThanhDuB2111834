@@ -30,7 +30,7 @@
             <label class="input-group-text" for="inputGroupSelect02">Options</label>
         </div>
     </div>
-    <form class="row mt-3 <?= isset($errors) ? 'd-block' : 'd-none' ?>" id="form-themSP" method="POST" enctype="multipart/form-data">
+    <form class="row mt-3 <?= (isset($errors) || isset($errorImgUpload)) ? 'd-block' : 'd-none' ?>" id="form-themSP" method="POST" enctype="multipart/form-data">
         <fieldset class="col-6 offset-3 border border-secondary py-2 rounded">
             <legend>Thêm sản phẩm</legend>
             <div class="mb-3">

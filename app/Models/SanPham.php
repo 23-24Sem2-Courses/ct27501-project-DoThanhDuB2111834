@@ -13,7 +13,7 @@ class SanPham extends Model
 
     public function HoaDon()
     {
-        return $this->belongsToMany(HoaDon::class, 'chitiethoadon')->withPivot('hoa_don_id')->onDelete('cascade');
+        return $this->belongsToMany(HoaDon::class, 'chitiethoadon')->withPivot('hoa_don_id');
     }
 
     public static function Validate($data): array

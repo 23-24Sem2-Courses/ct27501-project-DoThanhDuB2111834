@@ -17,6 +17,6 @@ class HoaDon extends Model
     }
     public function SanPham()
     {
-        return $this->belongsToMany(SanPham::class, 'chitiethoadon')->withPivot('san_pham_id')->onDelete('cascade');
+        return $this->belongsToMany(SanPham::class, 'chitiethoadon');
     }
 }
