@@ -23,26 +23,30 @@
         </button>
 
         <div class="input-group col">
-            <select class="form-select" id="inputGroupSelect02">
-                <option selected>A -> Z</option>
-                <option value="1">Z -> A</option>
+            <select class="form-select" name="sanPhamInsertForm-order" onchange="sortTableSanPham();"
+                id="inputOrderSanPham">
+                <option value="asc" selected>A -> Z</option>
+                <option value="desc">Z -> A</option>
             </select>
-            <label class="input-group-text" for="inputGroupSelect02">Options</label>
+            <label class="input-group-text" for="inputOrderSanPham">Options</label>
         </div>
     </div>
-    <form class="row mt-3 <?= (isset($errors) || isset($errorImgUpload)) ? 'd-block' : 'd-none' ?>" id="form-themSP" method="POST" enctype="multipart/form-data">
+    <form class="row mt-3 form-themSP <?= (isset($errors) || isset($errorImgUpload)) ? 'd-block' : 'd-none' ?>"
+        data-mdb-toggle="animation" data-mdb-animation="slide-in-left" id="form-themSP" method="POST"
+        enctype="multipart/form-data">
         <fieldset class="col-6 offset-3 border border-secondary py-2 rounded">
             <legend>Thêm sản phẩm</legend>
             <div class="mb-3">
                 <label for="insertForm-tenSP" class="form-label">Tên sản phẩm</label>
                 <input type="text" id="insertForm-tenSP" name="tenSPInput" class="form-control"
-                    value="<?= isset($olds['tensp']) ? $this->e($olds['tensp']) : '' ?>" 
+                    value="<?= isset($olds['tensp']) ? $this->e($olds['tensp']) : '' ?>"
                     placeholder="Nhập vào tên sản phẩm">
             </div>
             <div class="mb-3 row">
                 <label for="insertForm-giaSP" class="form-label col">Giá sản phẩm</label>
-                <input type="number" id="insertForm-giaSP" name="giaSPInput" class="form-control <?= isset($errors['giasp']) ? 'is-invalid' : '' ?>" required
-                    value="<?= isset($olds['giasp']) ? $this->e($olds['giasp']) : '' ?>" 
+                <input type="number" id="insertForm-giaSP" name="giaSPInput"
+                    class="form-control <?= isset($errors['giasp']) ? 'is-invalid' : '' ?>" required
+                    value="<?= isset($olds['giasp']) ? $this->e($olds['giasp']) : '' ?>"
                     aria-describedby="inputGroupPrepend" placeholder="Nhập vào giá sản phẩm">
                 <?php if (isset($errors['giasp'])): ?>
                     <span class="text-danger">
@@ -53,8 +57,8 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Mô tả sản phẩm</span>
-                <textarea class="form-control" name="motaSPInput" aria-label="With textarea"
-                     ><?= isset($olds['motasp']) ? $this->e($olds['motasp']) : '' ?></textarea>
+                <textarea class="form-control" name="motaSPInput"
+                    aria-label="With textarea"><?= isset($olds['motasp']) ? $this->e($olds['motasp']) : '' ?></textarea>
             </div>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="insertForm-imgSP">Upload</label>
@@ -71,9 +75,8 @@
                 <?php endif ?>
             </div>
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-danger"
-                    onclick="toogleDisplayFormInsert()">Thoát</button>
+                <button type="submit" class="btn btn-primary">Thêm</button>
+                <button type="button" class="btn btn-danger" onclick="toogleDisplayFormInsert()">Thoát</button>
             </div>
         </fieldset>
     </form>
@@ -83,7 +86,7 @@
         </a>
     </div>
     <div class="SanPham-body mt-3 row">
-        <table class="table table-striped">
+        <table class="table table-striped" id="sanPhamTable">
             <thead>
                 <tr>
                     <th scope="col">Mã sản phẩm</th>
@@ -93,7 +96,7 @@
                     <th scope="col">giá sản phẩm</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="body-sanPhamTable">
                 <?php foreach ($sanPhamList as $sanPham): ?>
                     <tr>
                         <td>
@@ -143,20 +146,23 @@
                 </h2>
             </div>
             <div class="modal-body">
-                <form action="/SanPham/TimKiem" method="GET">
-                    <div class="form-group">
-                        <label for="maSPInput">
-                            Mã sản phẩm:
-                        </label>
-                        <input type="text" class="form-control my-2" placeholder="Nhập mã sản phẩm" id="maSPInput"
-                            name="maSPInput" />
-                    </div>
+                <form action="/SanPham/TimKiem" method="POST">
                     <div class="form-group">
                         <label for="tenSPInput">
                             Tên sản phẩm:
                         </label>
                         <input type="text" class="form-control my-2" placeholder="Nhập tên sản phẩm" id="tenSPInput"
                             name="tenSPInput" />
+                    </div>
+                    <div class="d-flex">
+                        <select class="form-select"
+                            id="giaSPInput" name="giaSPInput">
+                            <option value="all" selected>all</option>
+                            <option value="20000">< 20000</option>
+                            <option value="30000">< 30000</option>
+                            <option value="100000">< 100000</option>
+                        </select>
+                        <label class="input-group-text" for="giaSPInput">Các mức giá</label>
                     </div>
                     <button class="btn btn-success btn-block mt-3" style="width: 100%;" type="submit">
                         Tìm kiếm
@@ -180,13 +186,13 @@
 <script src="../JS/SanPham.js"></script>
 
 <!-- Nếu thêm thành công thì hiển thị thông báo -->
-<?php if (isset($message)) : ?>
-    <?php 
-        echo "<script>";
-            echo "alert('". $message ."');";
-        echo "</script>";
-        unset($message);
-    ?>
+<?php if (!empty($message)): ?>
+    <?php
+    echo "<script>";
+    echo "alert('" . $message . "');";
+    echo "</script>";
+    unset($message);
+?>
 <?php endif; ?>
 
 <?php $this->stop() ?>

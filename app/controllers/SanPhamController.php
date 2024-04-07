@@ -20,9 +20,10 @@ class SanPhamController extends Controller
 
     public function index()
     {
-        $result = SanPham::all();
+        $resultAll = SanPham::all();
+        $resultSearch = session_get_once('sanPhamList');
         $data = [
-            'sanPhamList' => $result,
+            'sanPhamList' => (isset($resultSearch) ? $resultSearch : $resultAll),
             'errorImgUpload' => session_get_once('errorsImgUpLoad'),
             'errors' => session_get_once('errors'),
             'message' => session_get_once('message'),
@@ -33,10 +34,18 @@ class SanPhamController extends Controller
 
     public function getDSSanPham()
     {
-        $thongTinTimKiem = $this->filterDataSanPham($_GET);
-        $result = SanPham::where('id', 'like', "%" . $thongTinTimKiem['id'] . "%")
-            ->where('tensp', 'like', "%" . $thongTinTimKiem['tensp'] . "%")->get();
-        $this->sendPage('SanPham/SanPham', ['sanPhamList' => $result]);
+        $thongTinTimKiem = $this->filterDataSanPham($_POST);
+        // var_dump(($thongTinTimKiem['giasp']));
+        if ($thongTinTimKiem['giasp'] == 'all') {
+            $result = SanPham::where('tensp', 'like', "%" . $thongTinTimKiem['tensp'] . "%")->get();
+            // $this->sendPage('SanPham/SanPham', ['sanPhamList' => $result, 'message' => (!isset($result) ? 'Không có sản phẩm phù hợp' : '')]);
+            redirect('/SanPham', ['sanPhamList' => $result, 'message' => (!isset($result) ? 'Không có sản phẩm phù hợp' : '')]);
+        } else {
+            $result = SanPham::where('giasp', '<', $thongTinTimKiem['giasp'])
+                ->where('tensp', 'like', "%" . $thongTinTimKiem['tensp'] . "%")->get();
+            // $this->sendPage('SanPham/SanPham', ['sanPhamList' => $result, 'message' => (!isset($result) ? 'Không có sản phẩm phù hợp' : '')]);
+            redirect('/SanPham', ['sanPhamList' => $result, 'message' => (!isset($result) ? 'Không có sản phẩm phù hợp' : '')]);
+        }
 
     }
 
@@ -100,14 +109,14 @@ class SanPhamController extends Controller
         $data = $this->filterDataSanPham($_POST);
         $model_errors = SanPham::Validate($data);
 
-        if (!empty($model_errors)){
+        if (!empty($model_errors)) {
             $this->saveFormValues($data);
             redirect("/SanPham/edit/$id", ['errors' => $model_errors]);
         }
         // Nếu người dùng tải ảnh mới lên thì lưu ảnh mới và xóa ảnh cũ
         $stateSaveImg = SanPham::handleSaveImg();
         $imgPath = null;
-        if(is_string($stateSaveImg)){
+        if (is_string($stateSaveImg)) {
             $imgPath = $stateSaveImg;
             $imgPath = str_replace('.jpg', '', $imgPath);
         }
@@ -132,7 +141,7 @@ class SanPhamController extends Controller
     {
         $sanPham = SanPham::find($id);
 
-        if(!$sanPham)
+        if (!$sanPham)
             redirect('/SanPham', ['message' => 'Sản phẩm không tồn tại']);
 
         // Xóa ảnh của sản phẩm trong folder lưu ảnh
@@ -147,9 +156,10 @@ class SanPhamController extends Controller
     public function filterDataSanPham($data): array
     {
         return [
-            'tensp' => $data['tenSPInput'],
-            'giasp' => $data['giaSPInput'],
-            'motasp' => $data['motaSPInput']
+            'id' => (isset($data['maSPIput']) ? $data['maSPInput'] : null),
+            'tensp' => (isset($data['tenSPInput']) ? $data['tenSPInput'] : null),
+            'giasp' => (isset($data['giaSPInput']) ? $data['giaSPInput'] : null),
+            'motasp' => (isset($data['motaSPInput']) ? $data['motaSPInput'] : null)
         ];
     }
 }

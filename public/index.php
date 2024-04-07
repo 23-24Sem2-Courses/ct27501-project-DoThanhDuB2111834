@@ -32,7 +32,7 @@ $router->get('/DSMon', '\App\Controllers\ThuNganController@getAllMon');
 
 // Trang sản phẩm
 $router->get('/SanPham', '\App\Controllers\SanPhamController@index');
-$router->get('/SanPham/TimKiem', '\App\Controllers\SanPhamController@getDSSanPham');
+$router->post('/SanPham/TimKiem', '\App\Controllers\SanPhamController@getDSSanPham');
 $router->post('/SanPham', '\App\Controllers\SanPhamController@store');
 $router->get('/SanPham/edit/(.*)', '\App\Controllers\SanPhamController@edit');
 $router->post('/SanPham/update/(.*)', '\App\Controllers\SanPhamController@update');
