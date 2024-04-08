@@ -55,18 +55,18 @@ class SanPhamController extends Controller
         $data = $this->filterDataSanPham($_POST);
         $model_errors = SanPham::Validate($data);
 
-        // Lưu lại dữ liệu đã được nhập từ trước đó
-        $this->saveFormValues($data);
+
         if (!empty($model_errors)) {
-            // var_dump($data);
+            $this->saveFormValues($data);
             redirect('/SanPham', ['errors' => $model_errors]);
         }
 
         $stateSaveImg = SanPham::handleSaveImg();
         // Nếu lưu ảnh thất bại biến stateSaveImg sẽ được gán danh sách lỗi
-        if (is_array($stateSaveImg))
+        if (is_array($stateSaveImg)){
+            $this->saveFormValues($data);
             redirect('/SanPham', ['errorsImgUpLoad' => $stateSaveImg]);
-
+        }
         // Nếu lưu ảnh thành công thì biến stateSaveImg sẽ được gán đường dẫn của ảnh
         $imgPath = (!is_null($stateSaveImg) ? $stateSaveImg : null);
         $imgPath = str_replace('.jpg', '', $imgPath);
@@ -119,8 +119,11 @@ class SanPhamController extends Controller
         if (is_string($stateSaveImg)) {
             $imgPath = $stateSaveImg;
             $imgPath = str_replace('.jpg', '', $imgPath);
+        } else if (is_array($stateSaveImg)){
+            $this->saveFormValues($data);
+            redirect("/SanPham/edit/$id", ['errorsImgUpLoad' => $stateSaveImg]);
         }
-        // Nếu kết quả trả về là đường dẫn ảnh mới thì xóa bỏ ảnh cũ 
+            // Nếu kết quả trả về là đường dẫn ảnh mới thì xóa bỏ ảnh cũ 
         if (!is_null($imgPath))
             SanPham::handleRemoveImg($sanPham->imgsp);
 
@@ -134,7 +137,7 @@ class SanPhamController extends Controller
 
         $sanPham->save();
 
-        redirect('/SanPham', ['message' => 'Chỉnh sửa sản phẩm thành công sản phẩm thành công']);
+        redirect('/SanPham', ['message' => 'Chỉnh sửa sản phẩm thành công']);
     }
 
     public function delete($id)
