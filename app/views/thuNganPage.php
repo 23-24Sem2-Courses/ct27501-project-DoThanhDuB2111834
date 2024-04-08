@@ -12,7 +12,7 @@
 
         <form action="" id="thuNgan-Form-postValue" method="POST">
           <input type="hidden" name="soBan" id="banDuocChon" value="1">
-          <table class="table" class="thuNgan-table" id="tableHienThiCacMon" border="1">
+          <table class="table" class="thuNgan-table" id="tableHienThiCacMon">
             <thead>
               <tr>
                 <th scope="col">Tên hàng hóa</th>

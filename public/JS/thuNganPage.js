@@ -50,8 +50,8 @@ function setGiaTriChoBangVaForm(id_mon){
         tableHienThi = document.getElementById('tableHienThiCacMon-body');
         row = document.createElement('tr');
 
-        tdTen = document.createElement('th');
-        tdTen.setAttribute('scope', 'row');
+        tdTen = document.createElement('td');
+        // tdTen.setAttribute('scope', 'row');
         tdTen.innerHTML = tenMon.trim();
         row.appendChild(tdTen);
 
@@ -121,6 +121,9 @@ function thayDoiTongTienCuaMon (tenMon){
             gia = parseFloat(mon[i].children[2].textContent);
             mon[i].children[3].innerText = soLuong * gia;
             mon[i].children[5].children[0].value = soLuong;
+
+            if(mon[i].children[1].children[0].value == 0)
+                mon[i].remove();
         }
     }
     // Sau khi thêm món mới phải tính lại tổng tiền
@@ -143,7 +146,6 @@ function ktraHoaDonRong(event){
     if(mon = document.getElementById('tableHienThiCacMon-body').children.length == 0) {
         alert('Hãy nhập vào ít nhất 1 món trước khi thanh toán');
     } else {
-        alert("Thanh toán thành công");
         form = document.getElementById("thuNgan-Form-postValue");
         form.submit();
     }
