@@ -2,10 +2,10 @@
 
 namespace App\controllers;
 
-use App\Models\HoaDon;
 use App\SessionGuard as Guard;
 use App\Models\SanPham;
-use App\controllers\imgController;
+use App\Http\Controllers\Controller as HttpController;
+use Illuminate\Pagination\Paginator;
 
 class SanPhamController extends Controller
 {
@@ -21,6 +21,7 @@ class SanPhamController extends Controller
     public function index()
     {
         $resultAll = SanPham::all();
+
         $resultSearch = session_get_once('sanPhamList');
         $data = [
             'sanPhamList' => (isset($resultSearch) ? $resultSearch : $resultAll),

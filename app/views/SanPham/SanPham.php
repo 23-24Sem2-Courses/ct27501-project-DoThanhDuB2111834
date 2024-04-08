@@ -60,8 +60,7 @@
                 </div>
             </div>
             <form class="mt-3 form-themSP <?= (isset($errors) || isset($errorImgUpload)) ? 'd-block' : 'd-none' ?>"
-                id="form-themSP" method="POST" style="animation: formSlideDown 2s;"
-                enctype="multipart/form-data">
+                id="form-themSP" method="POST" style="animation: formSlideDown 2s;" enctype="multipart/form-data">
                 <fieldset class="px-4 border border-secondary py-2 rounded">
                     <legend>Thêm sản phẩm</legend>
                     <div class="mb-3">
@@ -94,14 +93,14 @@
                             name="imgSPInput" id="insertForm-imgSP">
                     </div>
                     <?php if (isset($errorImgUpload)): ?>
-                            <?php foreach ($errorImgUpload as $errorImg): ?>
-                                <p class="text-danger">
-                                    <strong>
-                                        <?= $this->e($errorImg) ?>
-                                    </strong>
-                                </p>
-                            <?php endforeach; ?>
-                        <?php endif ?>
+                        <?php foreach ($errorImgUpload as $errorImg): ?>
+                            <p class="text-danger">
+                                <strong>
+                                    <?= $this->e($errorImg) ?>
+                                </strong>
+                            </p>
+                        <?php endforeach; ?>
+                    <?php endif ?>
                     <div class="mt-3">
                         <button type="submit" class="btn btn-primary">Thêm</button>
                         <button type="reset" class="btn btn-warning">Xóa form</button>
@@ -154,8 +153,20 @@
                                 </td>
                             </tr>
                         <?php endforeach ?>
+                       
                     </tbody>
+
                 </table>
+                
+                <!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="SanPham/url?page2">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav> -->
 
             </div>
         </div>

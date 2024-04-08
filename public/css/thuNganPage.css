@@ -9,24 +9,61 @@
 }
 
 .thuNgan-thongTinHoaDon{
-    position: relative;
-    height: 90vh;
-}
-
-.thuNgan-table{
+    /* position: relative;
+    height: 92vh;
+    max-height: 92vh; */
     height: 100%;
 }
 
+.thuNgan-form{
+    /* height: 92vh;
+    max-height: 92vh; */
+    height: 100%;
+    width: 100%;
+}
+
+.thuNgan-table{
+    width: 100%;
+    height: 85%;
+    max-height: 85% !important;
+}
+
+.thuNgan-table-head{
+    height: 10%;
+    width: 100%;
+    display: block;
+}
+
+/* .thuNgan-table-head tr{
+    display: flex;
+    justify-content: space-between;
+} */
+
+.tableHienThiCacMon-body{
+    height: 90%;
+    width: 100%;
+    overflow: auto;
+    display: block;
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
 .thuNgan-table-footer{
-    position: absolute;
+    height: 11%;
+    /* position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 0; */
 }
 
 .thuNgan-table-footer-infor{
     width: 100%;
     margin: unset !important;
+}
+
+.thuNgan-thongTinBanVaMon{
+    height: 100%;
 }
 
 .menu-Header{
@@ -45,6 +82,18 @@
 .ban-item:hover{
     opacity: 0.6;
     transition: opacity 0.3s;
+}
+
+.thucDon-hienThiMon{
+    height: 69%;
+}
+
+.thucDon-hienThiMon-search{
+    height: 10%;
+}
+
+.thucDon-list{
+    height: 102%;
 }
 
 .thucDon-img{
