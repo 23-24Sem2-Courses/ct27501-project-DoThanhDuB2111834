@@ -25,6 +25,10 @@ class ThuNganController extends Controller
     {
         // Láy các món từ database
         $menu = SanPham::all(); 
+        $data = [
+            'menu' => $menu,
+            'message' => session_get_once('message')
+        ];
         $this->sendPage('thuNganPage', ['menu' => $menu]);
     }
 
@@ -49,7 +53,7 @@ class ThuNganController extends Controller
             $hoaDon->SanPham()->save($mon, ['soluong' => $soLuong]);
         }
         $hoaDon->update(['tongtien' => $tongTien]);
-        redirect('/thuNganPage', ['menu' => SanPham::all()]);
+        redirect('/thuNganPage', ['message' => 'Thanh toán thành công']);
     }
 
     public function getList($keyword) 
