@@ -18,8 +18,9 @@ $router->post('/login', '\App\Controllers\Auth\LoginController@store');
 $router->post('/logout', '\App\Controllers\Auth\LoginController@destroy');
 
 // Admin thêm tài khoản mới cho nhân viên
-$router->get('/AddAccount', '\App\Controllers\Auth\AddNewAccountController@index');
 
+$router->get('/AddAccount', '\App\Controllers\Auth\AddNewAccountController@create');
+$router->post('/AddAccount', '\App\Controllers\Auth\AddNewAccountController@store');
 $router->get('/TongQuan', '\App\Controllers\TongQuanController@index');
 $router->get('/', '\App\Controllers\TongQuanController@index');
 
