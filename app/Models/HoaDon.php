@@ -8,7 +8,7 @@ use App\Models\TaiKhoan;
 class HoaDon extends Model
 {
     protected $table = 'hoadon';
-    protected $fillable = ['ghichu', 'tongtien', 'ban', 'tai_khoan_id'];
+    protected $fillable = ['ghichu', 'tongtien', 'ban', 'tai_khoan_id', 'ngaysuahd'];
     // protected $primaryKey = 'id';
     public $timestamps = false;
     public function TaiKhoan()
@@ -17,6 +17,6 @@ class HoaDon extends Model
     }
     public function SanPham()
     {
-        return $this->belongsToMany(SanPham::class, 'chitiethoadon');
+        return $this->belongsToMany(SanPham::class, 'chitiethoadon')->withPivot('soluong');
     }
 }

@@ -31,7 +31,7 @@
 .thuNgan-table-head{
     height: 10%;
     width: 100%;
-    display: block;
+    /* display: block; */
 }
 
 /* .thuNgan-table-head tr{
@@ -40,13 +40,10 @@
 } */
 
 .tableHienThiCacMon-body{
-    height: 90%;
+    max-height: 90%;
     width: 100%;
     overflow: auto;
-    display: block;
-    /* flex-direction: column;
-    justify-content: center;
-    align-items: center; */
+    /* display: flex; */
 }
 
 .thuNgan-table-footer{

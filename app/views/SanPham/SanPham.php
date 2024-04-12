@@ -172,48 +172,7 @@
         </div>
     </div>
 </div>
-<div id="modal-TimKiem" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header text-center d-block position-relative">
-                <button type="button"
-                    class="close border border-0 bg-transparent position-absolute top-0 end-0 pe-3 pt-2"
-                    data-dismiss="modal">
-                    &times;
-                </button>
-                <h2 class="modal-title">
-                    Tìm kiếm sản phẩm
-                </h2>
-            </div>
-            <div class="modal-body">
-                <form action="/SanPham/TimKiem" method="POST">
-                    <div class="form-group">
-                        <label for="tenSPInput">
-                            Tên sản phẩm:
-                        </label>
-                        <input type="text" class="form-control my-2" placeholder="Nhập tên sản phẩm" id="tenSPInput"
-                            name="tenSPInput" />
-                    </div>
-                    <div class="d-flex">
-                        <select class="form-select" id="giaSPInput" name="giaSPInput">
-                            <option value="all" selected>all</option>
-                            <option value="20000">
-                                < 20000</option>
-                            <option value="30000">
-                                < 30000</option>
-                            <option value="100000">
-                                < 100000</option>
-                        </select>
-                        <label class="input-group-text" for="giaSPInput">Các mức giá</label>
-                    </div>
-                    <button class="btn btn-success btn-block mt-3" style="width: 100%;" type="submit">
-                        Tìm kiếm
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <?php $this->stop() ?>
 

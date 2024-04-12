@@ -19,6 +19,7 @@
         "bramus/router": "^1.6",
         "illuminate/database": "^10.48",
         "league/plates": "^3.5",
-        "illuminate/pagination": "^10.48"
+        "illuminate/pagination": "^10.48",
+        "nesbot/carbon": "^2.72"
     }
 }

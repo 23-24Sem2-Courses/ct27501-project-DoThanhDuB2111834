@@ -28,6 +28,7 @@ $router->get('/', '\App\Controllers\TongQuanController@index');
 // Trang thu ngan
 $router->get('/thuNganPage', '\App\Controllers\ThuNganController@index');
 $router->post('/thuNganPage', '\App\Controllers\ThuNganController@store');
+$router->get('/thuNganPage/edit/(.*)', '\App\Controllers\ThuNganController@edit');
 $router->get('/DSMon/([^/]+)', '\App\Controllers\ThuNganController@getList');
 $router->get('/DSMon', '\App\Controllers\ThuNganController@getAllMon');
 
@@ -38,6 +39,11 @@ $router->post('/SanPham', '\App\Controllers\SanPhamController@store');
 $router->get('/SanPham/edit/(.*)', '\App\Controllers\SanPhamController@edit');
 $router->post('/SanPham/update/(.*)', '\App\Controllers\SanPhamController@update');
 $router->post('/SanPham/delete/(.*)', '\App\Controllers\SanPhamController@delete');
+
+// Trang giao dịch
+$router->get('/GiaoDich', '\App\Controllers\GiaoDichController@index');
+$router->post('/HoaDon/delete/(.*)', '\App\Controllers\GiaoDichController@delete');
+$router->post('/GiaoDich/TimKiem', '\App\Controllers\GiaoDichController@search');
 
 // Sử lý khi Client gửi yêu cầu HTTPS yêu cầu hình ảnh
 // $router->get('/thucDon/img/([a-zA-Z0-9_-]+)', '\App\Controllers\imgController@getImgMon');

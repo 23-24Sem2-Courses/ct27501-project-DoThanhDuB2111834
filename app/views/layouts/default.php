@@ -44,7 +44,7 @@
                         <a class="nav-link" href="/SanPham">Sản phẩm</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-disabled="true">Giao dịch</a>
+                        <a class="nav-link" href="/GiaoDich">Giao dịch</a>
                     </li>
                 </ul>
                 <?php if (!\App\SessionGuard::isTaiKhoanLoggedIn()): ?>

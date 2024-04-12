@@ -9,7 +9,9 @@
   <div class="App row row-cols-2">
     <div class="col thuNgan-thongTinHoaDon overflow-auto">
       <form action="" id="thuNgan-Form-postValue" class="thuNgan-form overflow-auto" method="POST">
-        <input type="hidden" name="soBan" id="banDuocChon" value="1">
+        <input type="hidden" name="id" value="<?= isset($hoaDonCanEdit) ? $this->e($hoaDonCanEdit->id) : '' ?>">
+        <input type="hidden" name="soBan" id="banDuocChon"
+          value="<?= isset($hoaDonCanEdit) ? $this->e($hoaDonCanEdit->ban) : 1 ?>">
         <table class="table thuNgan-table " id="tableHienThiCacMon">
           <thead class="thuNgan-table-head">
             <tr>
@@ -19,7 +21,23 @@
               <th scope="col">Thành tiền</th>
             </tr>
           </thead>
-          <tbody id="tableHienThiCacMon-body" class="tableHienThiCacMon-body "></tbody>
+          <tbody id="tableHienThiCacMon-body" class="tableHienThiCacMon-body ">
+            <?php if (isset($hoaDonCanEdit)): ?>
+              <?php foreach ($hoaDonCanEdit->SanPham as $sanPham): ?>
+                <tr>
+                  <td><?= $this->e($sanPham->tensp) ?></td>
+                  <td>
+                    <input type="number" name="" id="" onchange="thayDoiTongTienCuaMon('<?= $this->e($sanPham->tensp) ?>')"
+                      value="<?= $this->e($sanPham->pivot->soluong) ?>">
+                  </td>
+                  <td><?= $this->e($sanPham->giasp) ?></td>
+                  <td><?= $this->e($sanPham->pivot->soluong * $sanPham->giasp) ?></td>
+                  <td><i class="fa-solid fa-trash" onclick="xoaMon('<?= $this->e($sanPham->tensp) ?>')"></i></td>
+                  <td><input type="hidden" name="<?= $this->e($sanPham->id) ?>" value="<?= $this->e($sanPham->pivot->soluong) ?>"></td>
+                </tr>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </tbody>
         </table>
         <div class="thuNgan-table-footer">
           <div class="input-group">
@@ -209,5 +227,14 @@
 <?php $this->start("page_specific_js") ?>
 <!-- JS -->
 <script src="JS/thuNganPage.js"></script>
+<!-- Nếu thêm thành công thì hiển thị thông báo -->
+<?php if (!empty($message)): ?>
+    <?php
+    echo "<script>";
+    echo "alert('" . $message . "');";
+    echo "</script>";
+    unset($message);
+?>
+<?php endif; ?>
 
 <?php $this->stop() ?>
