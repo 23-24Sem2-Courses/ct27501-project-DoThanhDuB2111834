@@ -51,7 +51,7 @@
               aria-describedby="basic-addon1" placeholder="Hãy nhập ghi chú vào đây">
           </div>
           <div class="row row-cols-2 thuNgan-table-footer-infor">
-            <div id="thuNganPage-tongTien">Tổng tiền:</div>
+            <div id="thuNganPage-tongTien">Tổng tiền: <?= isset($hoaDonCanEdit) ? $this->e($hoaDonCanEdit->tongtien) : '' ?></div>
             <button type="submit" id="thuNganPage-submit-btn" class="btn btn-primary block"
               onclick="ktraHoaDonRong(event);">
               Thanh toán

@@ -115,7 +115,6 @@ function thayDoiTongTienCuaMon (tenMon){
     mon = document.getElementById('tableHienThiCacMon-body').children;
     console.log(tenMon);
     for (var i=0; i<mon.length; i++) {
-        console.log(mon[i].children[0].textContent);
         if (tenMon.includes(mon[i].children[0].textContent)) {
             soLuong = parseFloat(mon[i].children[1].children[0].value);
             gia = parseFloat(mon[i].children[2].textContent);
