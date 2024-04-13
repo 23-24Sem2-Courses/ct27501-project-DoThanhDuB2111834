@@ -25,9 +25,15 @@ class ThuNganController extends Controller
     {
         // Láy các món từ database
         $menu = SanPham::all();
+        $systemTimezone = date_default_timezone_get();
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = date('Y-m-d');
+        $lichSu_thanhToan = Guard::TaiKhoan()->HoaDon()->whereDate('ngaylap', $date)->get();
+        // echo "$lichSu_thanhToan";
         $data = [
             'menu' => $menu,
             'hoaDonCanEdit' => session_get_once('hoaDonCanEdit'),
+            'lichSu_thanhToan' => $lichSu_thanhToan,
             'message' => session_get_once('message')
         ];
         $this->sendPage('thuNganPage', $data);

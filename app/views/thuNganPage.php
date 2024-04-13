@@ -33,9 +33,14 @@
                   <td><?= $this->e($sanPham->giasp) ?></td>
                   <td><?= $this->e($sanPham->pivot->soluong * $sanPham->giasp) ?></td>
                   <td><i class="fa-solid fa-trash" onclick="xoaMon('<?= $this->e($sanPham->tensp) ?>')"></i></td>
-                  <td><input type="hidden" name="<?= $this->e($sanPham->id) ?>" value="<?= $this->e($sanPham->pivot->soluong) ?>"></td>
+                  <td><input type="hidden" name="<?= $this->e($sanPham->id) ?>"
+                      value="<?= $this->e($sanPham->pivot->soluong) ?>"></td>
                 </tr>
               <?php endforeach; ?>
+              <tr>
+                <td colspan="4"></td>
+                <td class="border border-0"><a href="/thuNganPage" class="btn btn-danger">Hủy edit</a></td>
+              </tr>
             <?php endif; ?>
           </tbody>
         </table>
@@ -59,7 +64,7 @@
       <div class="row text-white menu-Header my-2">
         <div class="col fs-4 bg-info mx-3 menu-Header-item" onclick="toggleBetweenBanAndthucDon('Ban');">
           <i class="fa-solid fa-table"></i> Bàn (0/20) <br />
-          <span id="soBan">Bàn 1</span>
+          <span id="soBan">Bàn <?= isset($hoaDonCanEdit) ? $this->e($hoaDonCanEdit->ban) : 1 ?></span>
         </div>
         <div class="col fs-4 bg-info me-3 menu-Header-item" onclick="toggleBetweenBanAndthucDon('thucDon');">
           <i class="fa-solid fa-utensils"></i> Thực đơn <br>
@@ -69,125 +74,24 @@
 
       <div class="row row-cols-5 g-3 text-white" id="ban-tab">
 
-        <div class="col">
-          <div class=" ban-item bg-info rounded" onclick="setChoseTable(1);" id="ban-1">
-            Ban 1
-          </div>
-        </div>
+        <?php $banDuocChon = isset($hoaDonCanEdit) ? $this->e($hoaDonCanEdit->ban) : 1 ?>
+        <?php for ($i = 1; $i <= 20; $i++): ?>
+          <?php if ($i == $banDuocChon): ?>
+            <div class="col">
+              <div class=" ban-item bg-info rounded" onclick="setChoseTable(<?= $i ?>);" id="ban-<?= $i ?>">
+                Ban <?= $i ?>
+              </div>
+            </div>
+          <?php else: ?>
+            <div class="col">
+              <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(<?= $i ?>);" id="ban-<?= $i ?>">
+                Ban <?= $i ?>
+              </div>
+            </div>
+          <?php endif; ?>
+        <?php endfor; ?>
 
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(2);" id="ban-2">
-            Ban 2
-          </div>
-        </div>
 
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(3);" id="ban-3">
-            Ban 3
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(4);" id="ban-4">
-            Ban 4
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(5);" id="ban-5">
-            Ban 5
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(6);" id="ban-6">
-            Ban 6
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(7);" id="ban-7">
-            Ban 7
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(8);" id="ban-8">
-            Ban 8
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(9);" id="ban-9">
-            Ban 9
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(10);" id="ban-10">
-            Ban 10
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(11);" id="ban-11">
-            Ban 11
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(12);" id="ban-12">
-            Ban 12
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(13);" id="ban-13">
-            Ban 13
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(14);" id="ban-14">
-            Ban 14
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(15);" id="ban-15">
-            Ban 15
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(16);" id="ban-16">
-            Ban 16
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(17);" id="ban-17">
-            Ban 17
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(18);" id="ban-18">
-            Ban 18
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(19);" id="ban-19">
-            Ban 19
-          </div>
-        </div>
-
-        <div class="col">
-          <div class=" ban-item bg-secondary rounded" onclick="setChoseTable(20);" id="ban-20">
-            Ban 20
-          </div>
-        </div>
       </div>
       <div class="row text-white thucDon-hienThiMon" style="display: none" id="thucDon-tab">
         <div class="input-group mt-2 mb-3 thucDon-hienThiMon-search">
@@ -222,18 +126,72 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div id="modal-LichSu" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center d-block position-relative">
+        <button type="button" class="close border border-0 bg-transparent position-absolute top-0 end-0 pe-3 pt-2"
+          data-dismiss="modal">
+          &times;
+        </button>
+        <h2 class="modal-title">
+          Danh sách hóa đơn
+        </h2>
+      </div>
+      <div class="modal-body">
+        <table class="table" id="">
+          <thead class="">
+            <tr>
+              <th scope="col">Mã hóa đơn</th>
+              <th scope="col">Tên nhân viên</th>
+              <th scope="col">Ngày lập</th>
+              <th scope="col">Ngày chỉnh sửa</th>
+              <th scope="col">Tổng tiền</th>
+            </tr>
+          </thead>
+          <tbody class="tableHienThiCacMon-body ">
+            <?php foreach ($lichSu_thanhToan as $hoaDon): ?>
+              <tr>
+                <td><strong><?= $this->e($hoaDon->id) ?></strong><br>
+                  Bàn: <?= $this->e($hoaDon->ban) ?></td>
+                <td><?= $this->e($hoaDon->TaiKhoan->tennv) ?></td>
+                <td><?= $this->e($hoaDon->ngaylap) ?></td>
+                <td><?= $this->e($hoaDon->ngaysuahd) ?></td>
+                <td><?= $this->e($hoaDon->tongtien) ?></td>
+                <td><a href="<?= '/thuNganPage/edit/' . $this->e($hoaDon->id) ?>" class="btn btn-xs btn-warning">
+                    <i alt="Edit" class="fa fa-pencil"> </i> Edit
+                  </a></td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer row d-flex justify-content-between border-0">
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_js") ?>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <!-- JS -->
 <script src="JS/thuNganPage.js"></script>
 <!-- Nếu thêm thành công thì hiển thị thông báo -->
 <?php if (!empty($message)): ?>
-    <?php
-    echo "<script>";
-    echo "alert('" . $message . "');";
-    echo "</script>";
-    unset($message);
+  <?php
+  echo "<script>";
+  echo "alert('" . $message . "');";
+  echo "</script>";
+  unset($message);
 ?>
 <?php endif; ?>
 

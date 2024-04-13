@@ -10,14 +10,16 @@
     <div class="row my-2 d-flex justify-content-evenly">
         <div class="col-3">
             <form action="/GiaoDich/TimKiem" method="POST">
-                <div class="border-bottom border-4 border-primary text-primary fs-4"><i class="fa-solid fa-bars"></i>
+                <div class="border-bottom border-4 border-primary text-primary fs-4 mb-4"><i class="fa-solid fa-bars"></i>
                     Tìm kiếm</div>
                 <div class="form-group">
-                    <input type="text" class="form-control my-2" placeholder="Nhập tên nhân viên" id="tenNVInput"
-                        name="tenNVInput" />
+                    <label for="maNVInput">Mã nhân viên:</label>
+                    <input type="text" class="form-control my-2" placeholder="Nhập mã nhân viên" id="maNVInput"
+                        name="maNVInput" />
                 </div>
                 <div class="form-group">
-                    <input type="date" class="form-control my-2" name="tgInput" id="">
+                    <label for="tgInput">Ngày lập:</label>
+                    <input type="date" class="form-control my-2" name="tgInput" id="tgInput">
                 </div>
                 <button class="btn btn-success btn-block mt-3" style="width: 100%;" type="submit">
                     Tìm kiếm

@@ -5,6 +5,7 @@ namespace App\controllers;
 use App\Models\TaiKhoan;
 use App\SessionGuard as Guard;
 use App\Models\HoaDon;
+use Illuminate\Support\Facades\DB;
 
 Class GiaoDichController extends Controller 
 {
@@ -40,14 +41,10 @@ Class GiaoDichController extends Controller
 
     public function search ()
     {
-        $result = TaiKhoan::where('tennv', 'like','%'. $_POST['tenNVInput'] .'%')->with('HoaDon')->get();
-
-        // $selectedTime = $_POST['tgInput'];
-        // if (isset($selectedTime)){
-        //     $result = HoaDon::whereDate('ngaysuahd', $selectedTime);
-        // }
-        // var_dump($result);
-        echo "$result";
-        // redirect('/GiaoDich', ['searchResult' => $result->get()]);
+        $HoaDon = TaiKhoan::find($_POST['maNVInput']);
+        if(!empty($_POST['tgInput']))
+            $HoaDon = $HoaDon->HoaDon()->whereDate('ngaylap', $_POST['tgInput'])->get();
+        else $HoaDon = $HoaDon->HoaDon;
+        redirect('/GiaoDich', ['searchResult' => $HoaDon]);
     }
 }
