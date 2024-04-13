@@ -22,6 +22,10 @@ $router->post('/logout', '\App\Controllers\Auth\LoginController@destroy');
 $router->get('/AddAccount', '\App\Controllers\Auth\AddNewAccountController@create');
 $router->post('/AddAccount', '\App\Controllers\Auth\AddNewAccountController@store');
 $router->get('/TongQuan', '\App\Controllers\TongQuanController@index');
+$router->get('/User', '\App\Controllers\Auth\UserController@index');
+$router->get('/User/edit/(\d+)', 'App\Controllers\Auth\UserController@edit');
+$router->post('/User/(\d+)', 'App\Controllers\Auth\UserController@update');
+$router->post('/User/delete/(\d+)', 'App\Controllers\Auth\UserController@destroy');
 $router->get('/', '\App\Controllers\TongQuanController@index');
 
 

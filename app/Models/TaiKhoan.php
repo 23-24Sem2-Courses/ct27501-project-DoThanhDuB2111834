@@ -18,7 +18,7 @@ Class TaiKhoan extends Model
         $errors = [];
 
         if (!$data['tendangnhap']) {
-            $errors['tendangnhap'] = 'Lỗi tên đăng nhậP.';
+            $errors['tendangnhap'] = 'Lỗi tên đăng nhập.';
         } elseif (static::where('tendangnhap', $data['tendangnhap'])->count() > 0) {
             $errors['tendangnhap'] = 'Tên đăng nhập đã tồn tại.';
         }
@@ -27,6 +27,22 @@ Class TaiKhoan extends Model
             $errors['matkhau'] = 'Mật khẩu phải có ít nhất 6 ký tự.';
         } elseif ($data['matkhau'] != $data['checkmatkhau']) {
             $errors['matkhau'] = 'Xác nhận mật khẩu không chính xác.';
+        }
+
+        return $errors;
+    }
+    public static function validate_edit(array $data)
+    {
+        $errors = [];
+
+        
+
+        if (strlen($data['tennv']) =="") {
+            $errors['tennv'] = 'Không được bỏ trống tên.';
+        }
+
+        if (strlen($data['diachi']) =="") {
+            $errors['diachi'] = 'Không được bỏ trống địa chỉ.';
         }
 
         return $errors;
