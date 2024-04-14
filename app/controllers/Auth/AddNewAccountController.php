@@ -93,7 +93,7 @@ class AddNewAccountController extends Controller
             $this->createUser($data);
 
             $messages = ['success' => 'Tạo tài khoản thành công.'];
-            redirect('/AddAccount', ['messages' => $messages]);
+            redirect('/User', ['messages' => $messages]);
         }
 
         // Dữ liệu không hợp lệ...
