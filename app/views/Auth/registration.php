@@ -22,15 +22,15 @@
             </div>
             
             <select name="gioitinh" id="gioitinh" value="<?= isset($old['gioitinh']) ? $this->e($old['gioitinh']) : '' ?>" required>
-                <option value="3" selected>Chọn giới tính</option>
-                <option value="0">Nữ</option>
-                <option value="1">Nam</option>
-                <option value="2">Khác</option>
+                <option value="3" >Chọn giới tính</option>
+                <option value="0" <?= isset($old['gioitinh']) ? (($old['gioitinh'] == 0) ? 'selected' : '') : '' ?>>Nữ</option>
+                <option value="1" <?= isset($old['gioitinh']) ? (($old['gioitinh'] == 1) ? 'selected' : '') : '' ?>>Nam</option>
+                <option value="2" <?= isset($old['gioitinh']) ? (($old['gioitinh'] == 2) ? 'selected' : '') : '' ?>>Khác</option>
             </select>
             <select name="vaitro" id="vaitro" value="<?= isset($old['vaitro']) ? $this->e($old['vaitro']) : '' ?>" required>
-                <option value="2" selected>Chọn vai trò</option>
-                <option value="0">Nhân viên</option>
-                <option value="1">Chủ</option>
+                <option value="2">Chọn vai trò</option>
+                <option value="0" <?= isset($old['vaitro']) ?(($old['vaitro'] == 0) ? 'selected' : '') : '' ?>>Nhân viên</option>
+                <option value="1" <?= isset($old['vaitro']) ?(($old['vaitro'] == 1) ? 'selected' : '') : '' ?>>Chủ</option>
                 
             </select>
             <div class="">
