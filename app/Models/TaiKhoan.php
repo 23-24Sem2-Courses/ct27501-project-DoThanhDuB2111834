@@ -14,6 +14,12 @@ Class TaiKhoan extends Model
     {
         return $this->hasMany(HoaDon::class);
     }
+
+
+    public function isAdmin() : bool 
+    {
+        return Guard::TaiKhoan()->role == 1;
+    }
     public static function validate(array $data)
     {
         $errors = [];

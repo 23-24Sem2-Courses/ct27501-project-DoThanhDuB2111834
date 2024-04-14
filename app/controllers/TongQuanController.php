@@ -17,7 +17,9 @@ class TongQuanController extends Controller
 
     public function index()
     {
-        // require_once __DIR__ . '../views/home.php';
-        $this->sendPage('TongQuan');
+        $data = [
+            'message' => session_get_once('message'),
+        ];
+        $this->sendPage('TongQuan', $data);
     }
 }

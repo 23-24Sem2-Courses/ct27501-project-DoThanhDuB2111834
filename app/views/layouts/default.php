@@ -35,28 +35,26 @@
                             <i class="fa-solid fa-chart-simple"></i>Tổng quan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/SanPham">Sản phẩm</a>
+                        <a class="nav-link <?= isset(\App\SessionGuard::TaiKhoan()->tennv) ? (\App\SessionGuard::TaiKhoan()->isAdmin() ? '' : 'visually-hidden') : 'visually-hidden' ?>" href="/SanPham">Sản phẩm</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?= isset(\App\SessionGuard::TaiKhoan()->tennv) ? (\App\SessionGuard::TaiKhoan()->isAdmin() ? '' : 'visually-hidden') : 'visually-hidden' ?>">
                         <a class="nav-link" href="/GiaoDich">Giao dịch</a>
                     </li>
                 </ul>
                 <?php if (!\App\SessionGuard::isTaiKhoanLoggedIn()): ?>
-                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li> -->
                 <?php else: ?>
                     <button type="button" class="btn navbar-text nav-link me-3" data-toggle="modal" data-target="#modal-LichSu"><i
                             class="fa-solid fa-clock-rotate-left"></i></button>
                     <a href="/thuNganPage" class="navbar-text nav-link"><i class="fa-solid fa-shop"></i></a>
-
                     <div class="nav-item dropdown nav-account">
                         <a class="nav-link nav-account-icon dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <?= $this->e(\App\SessionGuard::TaiKhoan()->tennv) ?>
                         </a>
                         <ul class="dropdown-menu nav-account-list">
-                            <li><a class="dropdown-item" href="/AddAccount">Thêm tài khoản</a></li>
-                            <li><a class="dropdown-item" href="/User">Quản trị tài khoản</a></li>
+                            <li><a class="dropdown-item <?= \App\SessionGuard::TaiKhoan()->isAdmin() ? '' : 'visually-hidden' ?>" href="/User">Quản trị tài khoản</a></li>
                             <li><a class="dropdown-item" href="/User/changepass">Đổi mật khẩu</a></li>
                             <li>
                                 <hr class="dropdown-divider">

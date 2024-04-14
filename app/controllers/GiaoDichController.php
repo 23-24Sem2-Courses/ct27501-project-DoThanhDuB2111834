@@ -14,6 +14,9 @@ Class GiaoDichController extends Controller
         if (!Guard::isTaiKhoanLoggedIn()) {
             redirect('/login');
         }
+        if(!Guard::TaiKhoan()->isAdmin()){
+            redirect('/TongQuan', ['message' => 'Xin lỗi bạn cần có quyền admin để sử dụng chức năng này']);
+        }
 
         parent::__construct();
     }

@@ -53,10 +53,11 @@
                 <div class="input-group col">
                     <select class="form-select" name="sanPhamInsertForm-order" onchange="sortTableSanPham();"
                         id="inputOrderSanPham">
-                        <option value="asc" selected>A -> Z</option>
-                        <option value="desc">Z -> A</option>
+                        <option value="" selected>all</option>
+                        <option value="asc" >Thấp đến cao</option>
+                        <option value="desc">Cao đến thấp</option>
                     </select>
-                    <label class="input-group-text" for="inputOrderSanPham">Options</label>
+                    <label class="input-group-text" for="inputOrderSanPham">Giá bán</label>
                 </div>
             </div>
             <form class="mt-3 form-themSP <?= (isset($errors) || isset($errorImgUpload)) ? 'd-block' : 'd-none' ?>"
@@ -109,7 +110,7 @@
                 </fieldset>
             </form>
             <div class="SanPham-body mt-3 row">
-                <table class="table table-striped" id="sanPhamTable">
+                <table class="table" id="sanPhamTable">
                     <thead>
                         <tr>
                             <th scope="col">Mã sản phẩm</th>

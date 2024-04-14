@@ -100,7 +100,8 @@
             </div>
             <div class="col-2 flex-column justify-content-center align-items-center">
                 <ul class="list-group w-100">
-                    <li class="list-group-item bg-info text-white font-weight-bold text-center border-dark">Nhân viên tích cực</li>
+                    <li class="list-group-item bg-info text-white font-weight-bold text-center border-dark">Nhân viên
+                        tích cực</li>
                     <li class="list-group-item text-center border-dark">Test 1</li>
                     <li class="list-group-item text-center border-dark">Test 2</li>
                     <li class="list-group-item text-center border-dark">Test 3</li>
@@ -120,67 +121,68 @@
 
 <?php $this->stop() ?>
 <?php $this->start("page_specific_js") ?>
-<script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"
-      integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-      defer
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Raleway"
-    />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"
+    integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+<?php if (!empty($message)): ?>
+    <?php
+    echo "<script>";
+    echo "alert('" . $message . "');";
+    echo "</script>";
+    unset($message);
+?>
+<?php endif; ?>
 <script>
     $(document).ready(function () {
-  $("body").addClass("loaded");
-  const data = [
-    { month: 6, Sales: 30 },
-    { month: 7, Sales: 50 },
-    { month: 8, Sales: 60 },
-    { month: 9, Sales: 40 },
-    { month: 10, Sales: 100 },
-    { month: 11, Sales: 150 },
-  ];
+        $("body").addClass("loaded");
+        const data = [
+            { month: 6, Sales: 30 },
+            { month: 7, Sales: 50 },
+            { month: 8, Sales: 60 },
+            { month: 9, Sales: 40 },
+            { month: 10, Sales: 100 },
+            { month: 11, Sales: 150 },
+        ];
 
-  new Chart($("#Recent-sales-Chart"), {
-    type: "bar",
-    data: {
-      labels: data.map((row) => row.month),
-      datasets: [
-        {
-          label: "Doanh số",
-          data: data.map((row) => row.Sales),
-        },
-      ],
-    },
-  });
+        new Chart($("#Recent-sales-Chart"), {
+            type: "bar",
+            data: {
+                labels: data.map((row) => row.month),
+                datasets: [
+                    {
+                        label: "Doanh số",
+                        data: data.map((row) => row.Sales),
+                    },
+                ],
+            },
+        });
 
-  new Chart($("#Best-seller"), {
-    type: "pie",
-    data: {
-      labels: [
-        "Trà đào",
-        "Trà sữa",
-        "Hồng trà xanh",
-        "Cafe",
-      ],
-      datasets: [
-        {
-          label: '',
-          data: [300, 50, 100, 70],
-          backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(54, 162, 235)",
-            "rgb(255, 205, 86)",
-            "rgb(50, 209, 50)",
-          ],
-          hoverOffset: 4,
-        },
-      ],
-    },
-  });
-});
+        new Chart($("#Best-seller"), {
+            type: "pie",
+            data: {
+                labels: [
+                    "Trà đào",
+                    "Trà sữa",
+                    "Hồng trà xanh",
+                    "Cafe",
+                ],
+                datasets: [
+                    {
+                        label: '',
+                        data: [300, 50, 100, 70],
+                        backgroundColor: [
+                            "rgb(255, 99, 132)",
+                            "rgb(54, 162, 235)",
+                            "rgb(255, 205, 86)",
+                            "rgb(50, 209, 50)",
+                        ],
+                        hoverOffset: 4,
+                    },
+                ],
+            },
+        });
+    });
 </script>
 <?php $this->stop() ?>

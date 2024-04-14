@@ -13,6 +13,9 @@ class AddNewAccountController extends Controller
         if (!Guard::isTaiKhoanLoggedIn()) {
             redirect('/login');
         }
+        if(!Guard::TaiKhoan()->isAdmin()){
+            redirect('/TongQuan', ['message' => 'Xin lỗi bạn cần có quyền admin để sử dụng chức năng này']);
+        }
 
         parent::__construct();
     }
@@ -51,7 +54,8 @@ class AddNewAccountController extends Controller
     {
         $data = [
             'old' => $this->getSavedFormValues(),
-            'errors' => session_get_once('errors')
+            'errors' => session_get_once('errors'),
+            'message' => session_get_once('message')
         ];
 
         $this->sendPage('Auth/registration', $data);
