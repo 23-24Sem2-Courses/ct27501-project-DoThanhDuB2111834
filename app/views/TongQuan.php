@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8">
-                                <h3 class="mb-0">10,002</h3>
+                                <h3 class="mb-0"><?= $this->e($tongSoNhanVien) ?></h3>
                                 <p class="text-muted">Nhân sự</p>
                             </div>
                             <div class="col-4 text-center d-flex align-items-center">
@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8">
-                                <h3 class="mb-0">154</h3>
+                                <h3 class="mb-0"><?= $this->e($tongSanPham) ?></h3>
                                 <p class="text-muted">Sản phẩm</p>
                             </div>
                             <div class="col-4 text-center d-flex align-items-center">
@@ -47,7 +47,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8">
-                                <h3 class="mb-0">96</h3>
+                                <h3 class="mb-0"><?= $this->e($tongHoaDon) ?></h3>
                                 <p class="text-muted">Đơn hàng</p>
                             </div>
                             <div class="col-4 text-center d-flex align-items-center">
@@ -64,7 +64,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8">
-                                <h3 class="mb-0">30.000.000</h3>
+                                <h3 class="mb-0"><?= $this->e($tongDoanhThu) ?></h3>
                                 <p class="text-muted">Doanh thu</p>
                             </div>
                             <div class="col-4 text-center d-flex align-items-center">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <label for="" class="font-weight-bold h5">Doanh số 6 tháng gần đây</label>
+                            <label for="" class="font-weight-bold h5">Doanh số 4 tháng gần đây</label>
                             <div class="card">
                                 <canvas id="Recent-sales-Chart"></canvas>
                             </div>
@@ -101,12 +101,16 @@
             <div class="col-2 flex-column justify-content-center align-items-center">
                 <ul class="list-group w-100">
                     <li class="list-group-item bg-info text-white font-weight-bold text-center border-dark">Nhân viên
-                        tích cực</li>
-                    <li class="list-group-item text-center border-dark">Test 1</li>
-                    <li class="list-group-item text-center border-dark">Test 2</li>
+                        tích cực trong tháng</li>
+                    <?php $i = 1; ?>
+                    <?php foreach ($nhanVienTichCuc as $nv): ?>
+                        <li class="list-group-item text-center border-dark"> <?= "$i ". $this->e($nv->TaiKhoan->tennv) . '<br> số hóa đơn lập: ' . $this->e($nv->tongsobuoilam) ?></li>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                    <!-- <li class="list-group-item text-center border-dark">Test 2</li>
                     <li class="list-group-item text-center border-dark">Test 3</li>
                     <li class="list-group-item text-center border-dark">Test 4</li>
-                    <li class="list-group-item text-center border-dark">Test 5</li>
+                    <li class="list-group-item text-center border-dark">Test 5</li> -->
                 </ul>
             </div>
         </div>
@@ -138,12 +142,15 @@
     $(document).ready(function () {
         $("body").addClass("loaded");
         const data = [
-            { month: 6, Sales: 30 },
-            { month: 7, Sales: 50 },
-            { month: 8, Sales: 60 },
-            { month: 9, Sales: 40 },
-            { month: 10, Sales: 100 },
-            { month: 11, Sales: 150 },
+            // { month: 6, Sales: 30 },
+            // { month: 7, Sales: 50 },
+            // { month: 8, Sales: 60 },
+            // { month: 9, Sales: 40 },
+            // { month: 10, Sales: 100 },
+            // { month: 11, Sales: 150 },
+            <?php foreach ($doanhThuTheoCacThang as $doanhThu): ?>
+                    <?= '{month:' . $this->e($doanhThu->thanglap) . ', Sales: ' . $this->e($doanhThu->tongtien) . '},' ?>
+            <?php endforeach; ?>
         ];
 
         new Chart($("#Recent-sales-Chart"), {
@@ -162,16 +169,20 @@
         new Chart($("#Best-seller"), {
             type: "pie",
             data: {
+                <?php $sanPham = array_keys($sanPhamList) ?>
                 labels: [
-                    "Trà đào",
-                    "Trà sữa",
-                    "Hồng trà xanh",
-                    "Cafe",
+                    "<?= $this->e($sanPham[0]) ?>",
+                    "<?= $this->e($sanPham[1]) ?>",
+                    "<?= $this->e($sanPham[2]) ?>",
+                    "<?= $this->e($sanPham[3]) ?>",
                 ],
                 datasets: [
                     {
                         label: '',
-                        data: [300, 50, 100, 70],
+                        data: [<?= $this->e($sanPhamList[$sanPham[0]]) ?>,
+                            <?= $this->e($sanPhamList[$sanPham[1]]) ?>,
+                            <?= $this->e($sanPhamList[$sanPham[2]]) ?>,
+                            <?= $this->e($sanPhamList[$sanPham[3]]) ?>],
                         backgroundColor: [
                             "rgb(255, 99, 132)",
                             "rgb(54, 162, 235)",
