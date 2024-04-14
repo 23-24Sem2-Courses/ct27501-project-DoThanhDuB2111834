@@ -54,7 +54,7 @@
                                     <?= $this->e($hoaDon->id) ?>
                                 </td>
                                 <td>
-                                    <?= $this->e($hoaDon->TaiKhoan->tennv) ?>
+                                    <?= isset($hoaDon->TaiKhoan) ? $this->e($hoaDon->TaiKhoan->tennv) : '' ?>
                                 </td>
                                 <td colspan="4">
                                     <?= $this->e($hoaDon->ngaylap) ?>
