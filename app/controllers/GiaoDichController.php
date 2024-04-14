@@ -44,10 +44,34 @@ Class GiaoDichController extends Controller
 
     public function search ()
     {
-        $HoaDon = TaiKhoan::find($_POST['maNVInput']);
-        if(!empty($_POST['tgInput']))
-            $HoaDon = $HoaDon->HoaDon()->whereDate('ngaylap', $_POST['tgInput'])->get();
-        else $HoaDon = $HoaDon->HoaDon;
-        redirect('/GiaoDich', ['searchResult' => $HoaDon]);
+        // $HoaDon = TaiKhoan::where('id', 'like', '%'. $_POST['maNVInput'] . '%')->get();
+        // if(!empty($_POST['tgInput']))
+        //     $HoaDon = $HoaDon->HoaDon()->whereDate('ngaylap', $_POST['tgInput']);
+        // else $HoaDon = $HoaDon->HoaDon;
+        // redirect('/GiaoDich', ['searchResult' => $HoaDon->get()]);
+        $result = [];
+        $nhanvien = TaiKhoan::where('tennv', 'like', '%'. $_POST['maNVInput'] . '%')->get();
+        if (!empty($_POST['tgInput'])){
+            $hoaDon = HoaDon::whereDate('ngaylap', $_POST['tgInput'])->get();
+            foreach ($hoaDon as $hd) {
+                foreach ($nhanvien as $nv ){
+                    if($hd->tai_khoan_id == $nv->id){
+                        array_push($result, $hd);
+                        continue;
+                    }
+                }
+            }
+        } else {
+            $hoaDon = HoaDon::all();
+            foreach ($hoaDon as $hd) {
+                foreach ($nhanvien as $nv ){
+                    if($hd->tai_khoan_id == $nv->id){
+                        array_push($result, $hd);
+                        continue;
+                    }
+                }
+            }
+        }
+        redirect('/GiaoDich', ['searchResult' => $result]);
     }
 }

@@ -79,7 +79,7 @@ class ThuNganController extends Controller
             $hoaDon->SanPham()->attach($mon, ['soluong' => $soLuong]);
         }
         $hoaDon->update(['tongtien' => $tongTien]);
-        redirect('/GiaoDich', ['message' => 'Chỉnh sửa hóa đơn thành công']);
+        redirect('/thuNganPage', ['message' => 'Chỉnh sửa hóa đơn thành công']);
     }
 
     public function store()

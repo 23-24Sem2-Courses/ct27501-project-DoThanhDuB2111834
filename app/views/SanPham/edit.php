@@ -53,8 +53,7 @@
         <?php endif ?>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-danger"
-                onclick="document.getElementById('form-themSP').style.display='none';">Thoát</button>
+            <a class="btn btn-danger" href="/SanPham">Thoát</a>
         </div>
     </fieldset>
 </form>

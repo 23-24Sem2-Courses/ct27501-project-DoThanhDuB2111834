@@ -37,25 +37,32 @@
                       value="<?= $this->e($sanPham->pivot->soluong) ?>"></td>
                 </tr>
               <?php endforeach; ?>
-              <tr>
+              <!-- <tr>
                 <td colspan="4"></td>
                 <td class="border border-0"><a href="/thuNganPage" class="btn btn-danger">Hủy edit</a></td>
-              </tr>
+              </tr> -->
             <?php endif; ?>
           </tbody>
         </table>
         <div class="thuNgan-table-footer">
+
           <div class="input-group">
             <label for="ThuNgan-ghiChu" class="input-group-text" id="basic-addon1">Ghi chú</label>
             <input type="text" id="ThuNgan-ghiChu" name="ThuNgan-ghiChu" class="form-control" aria-label="Username"
               aria-describedby="basic-addon1" placeholder="Hãy nhập ghi chú vào đây">
           </div>
-          <div class="row row-cols-2 thuNgan-table-footer-infor">
-            <div id="thuNganPage-tongTien">Tổng tiền: <?= isset($hoaDonCanEdit) ? $this->e($hoaDonCanEdit->tongtien) : '' ?></div>
+          <div class="row row-cols-<?= isset($hoaDonCanEdit) ? '3' : '2' ?> thuNgan-table-footer-infor">
+            <div id="thuNganPage-tongTien">Tổng tiền:
+              <?= isset($hoaDonCanEdit) ? $this->e($hoaDonCanEdit->tongtien) : '' ?>
+            </div>
             <button type="submit" id="thuNganPage-submit-btn" class="btn btn-primary block"
               onclick="ktraHoaDonRong(event);">
               Thanh toán
             </button>
+            <?php if (isset($hoaDonCanEdit)): ?>
+              <a href="/thuNganPage" class="btn btn-danger">Hủy edit</a>
+            <?php endif; ?>
+            
           </div>
         </div>
       </form>

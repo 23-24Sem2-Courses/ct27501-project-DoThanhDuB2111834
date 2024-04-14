@@ -47,20 +47,20 @@ class SanPham extends Model
 
         $check = getimagesize($_FILES["imgSPInput"]["tmp_name"]);
         if ($check === false) {
-            $errorsImgUpLoad['type'] = "$imageFileType: is not an image.";
+            $errorsImgUpLoad['type'] = "$imageFileType: không phải là hình ảnh.";
         }
 
         if ($_FILES["imgSPInput"]["size"] > 500000000) {
-            $errorsImgUpLoad['size'] = 'Sorry, your file is too large';
+            $errorsImgUpLoad['size'] = 'Xin lỗi, file của bạn quá lớn';
         }
 
         if ($imageFileType !== $extension) {
-            $errorsImgUpLoad['extension'] = 'Sorry, only JPG files are allowed.';
+            $errorsImgUpLoad['extension'] = 'Xin lỗi, hệ thống chỉ chấp nhận file JPG';
         }
 
-        if (file_exists($targetFile)) {
-            $errorsImgUpLoad['exist'] = "Sorry, file already exists.";
-        }
+        // if (file_exists($targetFile)) {
+        //     $errorsImgUpLoad['exist'] = "Xin lỗi, file ảnh này đã tồn tại.";
+        // }
 
         // Kiểm tra xong nếu có lỗi thì trả về mảng các lỗi
         if (!empty($errorsImgUpLoad)) {

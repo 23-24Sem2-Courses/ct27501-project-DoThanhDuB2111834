@@ -13,8 +13,8 @@
                 <div class="border-bottom border-4 border-primary text-primary fs-4 mb-4"><i class="fa-solid fa-bars"></i>
                     Tìm kiếm</div>
                 <div class="form-group">
-                    <label for="maNVInput">Mã nhân viên:</label>
-                    <input type="text" class="form-control my-2" placeholder="Nhập mã nhân viên" id="maNVInput"
+                    <label for="maNVInput">Tên nhân viên:</label>
+                    <input type="text" class="form-control my-2" placeholder="Nhập tên nhân viên" id="maNVInput"
                         name="maNVInput" />
                 </div>
                 <div class="form-group">
