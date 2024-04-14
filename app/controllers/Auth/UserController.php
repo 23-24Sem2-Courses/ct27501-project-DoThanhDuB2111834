@@ -90,4 +90,51 @@ class UserController extends Controller
 
         redirect('/User', ['message' => 'Xóa tài khoản thành công']);
     }
+
+    public function changePass(){
+        $this->sendPage('Auth/changepass');
+    }
+    protected function filterUserpass(array $data)
+    {
+        return [
+            'matkhauht' => $data['matkhauht'] ?? null,
+            'matkhaumoi' => $data['matkhaumoi'] ?? null,
+            'matkhaumoicheck' => $data['matkhaumoicheck'] ?? null
+            
+            
+        ];
+    }
+    public function editpass()
+    {
+        $user= Guard::TaiKhoan();
+        if(!$user){
+            $this->sendNotFound();
+        }
+        $data = [
+            
+            'errors' => session_get_once('errors'),
+            'user'=>$user,
+            'messages'=>session_get_once('messages')
+        ];
+
+        $this->sendPage('/Auth/changepass', $data);
+    }
+
+    public function updatePass(){
+        $user= Guard::TaiKhoan();
+        if(!$user){
+            $this->sendNotFound();
+        }
+        $data=$this->filterUserpass($_POST);
+        $model_errors=TaiKhoan::validatepass($data);
+        // var_dump($model_errors);
+        if (empty($model_errors)) {
+            // Dữ liệu hợp lệ...
+            $user->fill(['matkhau' => $data['matkhaumoi']]);
+            $user->save();
+            
+            redirect('/User/changepass', ['messages' => 'Thay đổi mật khẩu thành công.']);
+        }
+        redirect('/User/changepass', ['errors' => $model_errors]);
+    }
 }

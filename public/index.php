@@ -26,6 +26,8 @@ $router->get('/User', '\App\Controllers\Auth\UserController@index');
 $router->get('/User/edit/(\d+)', 'App\Controllers\Auth\UserController@edit');
 $router->post('/User/(\d+)', 'App\Controllers\Auth\UserController@update');
 $router->post('/User/delete/(\d+)', 'App\Controllers\Auth\UserController@destroy');
+$router->get('/User/changepass', '\App\Controllers\Auth\UserController@editpass');
+$router->post('/User/changepass', '\App\Controllers\Auth\UserController@updatePass');
 $router->get('/', '\App\Controllers\TongQuanController@index');
 
 

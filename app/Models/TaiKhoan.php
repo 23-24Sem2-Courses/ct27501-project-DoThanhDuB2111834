@@ -3,6 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\HoaDon;
+use App\SessionGuard as Guard;
 Class TaiKhoan extends Model 
 {
     protected $table = 'taikhoan';
@@ -47,5 +48,20 @@ Class TaiKhoan extends Model
 
         return $errors;
     }
+    public static function validatepass(array $data)
+    {
+        $errors = [];
 
+        
+
+        if ($data['matkhauht'] !==Guard::TaiKhoan()->matkhau ){
+            $errors['matkhauht'] = 'Sai mật khẩu.';
+        }elseif(strlen($data['matkhaumoi']) < 6) {
+            $errors['matkhaumoi'] = 'Mật khẩu phải có ít nhất 6 ký tự.';
+        }elseif ($data['matkhaumoi'] != $data['matkhaumoicheck']) {
+            $errors['matkhaumoicheck'] = 'Xác nhận mật khẩu không chính xác.';
+        }
+
+        return $errors;
+    }
 }
