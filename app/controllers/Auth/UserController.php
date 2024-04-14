@@ -23,6 +23,8 @@ class UserController extends Controller
             redirect('/TongQuan', ['message' => 'Xin lỗi bạn cần có quyền admin để sử dụng chức năng này']);
         }
         $this->sendPage('Auth/user', [
+            'message' => session_get_once('message'),
+            'messages' => session_get_once('messages'),
             'user' => TaiKhoan::get()
         ]);
     }
@@ -34,7 +36,7 @@ class UserController extends Controller
 
         $data = [
             'user' => $user,
-
+            'messages' => session_get_once('messages'),
             'errors' => session_get_once('errors'),
             'message' => session_get_once('message'),
             'old' => $this->getSavedFormValues()
@@ -120,7 +122,7 @@ class UserController extends Controller
             $this->sendNotFound();
         }
         $data = [
-
+            'message' => session_get_once('message'),
             'errors' => session_get_once('errors'),
             'user' => $user,
             'messages' => session_get_once('messages')

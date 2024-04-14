@@ -85,6 +85,14 @@
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_js") ?>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+
 <script src="https://cdn.datatables.net/v/bs4/dt-1.13.6/datatables.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -127,4 +135,23 @@
         // });
     });
 </script>
+
+<?php if (!empty($message)): ?>
+    <?php
+    echo "<script>";
+    echo "alert('" . $message . "');";
+    echo "</script>";
+    unset($message);
+?>
+<?php endif; ?>
+
+<?php if (!empty($messages)): ?>
+    <?php
+    echo "<script>";
+    echo "alert('" . $messages . "');";
+    echo "</script>";
+    unset($messages);
+?>
+<?php endif; ?>
+
 <?php $this->stop() ?>
