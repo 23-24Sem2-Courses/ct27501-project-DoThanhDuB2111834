@@ -28,7 +28,7 @@
             </div>
 			
 			<div class="aitssendbuttonw3ls">
-				<input type="submit" value="LOGIN">
+				<input type="submit" value="ĐĂNG NHẬP">
 				
 			</div>
 		</form>
